@@ -35,7 +35,7 @@ session_start();
 class DB{
 
     protected $table;
-    protected $dsn="mysql:host=localhost;dbname=resume;charset=utf8";
+    protected $dsn="mysql:host=localhost;dbname=s1090422;charset=utf8";
     protected $pdo;
 
     function __construct($table){
@@ -158,7 +158,7 @@ $Total=new DB("total");
 $Bottom=new DB("bottom");
 $Aut=new DB("aut");
 $Admin=new DB("admin");
-$Menu=new DB("menu");
+$Menu=new DB("re_menu");
 $Education=new DB("education");
 $Experience=new DB("experience");
 $Port=new DB("port");

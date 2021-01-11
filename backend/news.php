@@ -58,7 +58,7 @@
                               </label>
                             </div>
                           </td>
-                          <td ><textarea name="text[]" style="width: 95%;height:150px"><?= $row['text']; ?></textarea></td>
+                          <td><textarea name="text[]" rows="5" style="width: 95%;height:150px"><?= $row['text']; ?></textarea></td>
                           <input type="hidden" name="id[]" value="<?= $row['id']; ?>">
                           <input type="hidden" name="table" value="aut">
                           <td class="td-actions text-right">
@@ -70,13 +70,13 @@
                             </button>
                           </td>
                         </tr>
-                        
+
                       <?php
                       }
                       ?>
-                      <tr> <td width="200px"><input class="btn btn-primary btn-block" type="button"
-                            onclick="op('#cover','#cvr','./modal/aut.php')"
-                            value="新增"></td></tr>
+                      <tr>
+                        <td width="200px"><input class="btn btn-primary btn-block" type="button" onclick="op('#cover','#cvr','./modal/aut.php?table=aut')" value="新增"></td>
+                      </tr>
                     </tbody>
                   </table>
                 </form>
@@ -105,7 +105,7 @@
                           <input type="hidden" name="id[]" value="<?= $row['id']; ?>">
                           <input type="hidden" name="table" value="education">
                           <td class="td-actions text-right">
-                            <input type="button" value="編輯時間" onclick="op('#cover','#cvr','./modal/submenu.php?table=<?= $do; ?>&id=<?= $row['id']; ?>')">
+                            <input class="btn btn-primary btn-block" type="button" value="編輯學歷介紹" onclick="op('#cover','#cvr','./modal/edu.php?table=education&id=<?= $row['id']; ?>')">
                             <button type="submit" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm">
                               <i class="material-icons">edit</i>
                             </button>
@@ -117,6 +117,9 @@
                       <?php
                       }
                       ?>
+                      <tr>
+                        <td width="200px"><input class="btn btn-primary btn-block" type="button" onclick="op('#cover','#cvr','./modal/edu.php?table=education')" value="新增"></td>
+                      </tr>
                     </tbody>
                   </table>
                 </form>
@@ -145,7 +148,7 @@
                           <input type="hidden" name="id[]" value="<?= $row['id']; ?>">
                           <input type="hidden" name="table" value="experience">
                           <td class="td-actions text-right">
-                            <input type="button" value="編輯時間" onclick="op('#cover','#cvr','./modal/submenu.php?table=<?= $do; ?>&id=<?= $row['id']; ?>')">
+                            <input class="btn btn-primary btn-block" type="button" value="編輯經歷介紹" onclick="op('#cover','#cvr','./modal/submenu.php?table=experience&id=<?= $row['id']; ?>')">
                             <button type="submit" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm">
                               <i class="material-icons">edit</i>
                             </button>
@@ -157,6 +160,9 @@
                       <?php
                       }
                       ?>
+                      <tr>
+                        <td width="200px"><input class="btn btn-primary btn-block" type="button" onclick="op('#cover','#cvr','./modal/ex.php?table=experience')" value="新增"></td>
+                      </tr>
                     </tbody>
                   </table>
                 </form>
@@ -180,12 +186,12 @@
                               </label>
                             </div>
                           </td>
-                          <td><img src="./front/img/portfolio/<?=$row['img'];?>" style="width:100px;height:100px"></td>
+                          <td><img src="./front/img/portfolio/<?= $row['img']; ?>" style="width:100px;height:100px"></td>
                           <td><input type="text" name="text[]" value="<?= $row['text']; ?>" style="width:50%"></td>
                           <input type="hidden" name="id[]" value="<?= $row['id']; ?>">
                           <input type="hidden" name="table" value="port">
                           <td class="td-actions text-right">
-                          <input type="button" value="更換圖片" onclick="op('#cover','#cvr','./modal/upload.php?table=port&id=<?=$row['id'];?>')">
+                            <input class="btn btn-primary btn-block" type="button" value="編輯作品集介紹" onclick="op('#cover','#cvr','./modal/portsub.php?table=port&id=<?= $row['id']; ?>')">
                             <button type="submit" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm">
                               <i class="material-icons">edit</i>
                             </button>
@@ -197,55 +203,14 @@
                       <?php
                       }
                       ?>
+                      <tr>
+                        <td width="200px"><input class="btn btn-primary btn-block" type="button" onclick="op('#cover','#cvr','./modal/port.php?table=experience')" value="新增"></td>
+                      </tr>
                     </tbody>
                   </table>
                 </form>
               </div>
             </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-6 col-md-12">
-        <div class="card">
-          <div class="card-header card-header-warning">
-            <h4 class="card-title">Employees Stats</h4>
-            <p class="card-category">New employees on 15th September, 2016</p>
-          </div>
-          <div class="card-body table-responsive">
-            <table class="table table-hover">
-              <thead class="text-warning">
-                <th>ID</th>
-                <th>Name</th>
-                <th>Salary</th>
-                <th>Country</th>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>Dakota Rice</td>
-                  <td>$36,738</td>
-                  <td>Niger</td>
-                </tr>
-                <tr>
-                  <td>2</td>
-                  <td>Minerva Hooper</td>
-                  <td>$23,789</td>
-                  <td>Curaçao</td>
-                </tr>
-                <tr>
-                  <td>3</td>
-                  <td>Sage Rodriguez</td>
-                  <td>$56,142</td>
-                  <td>Netherlands</td>
-                </tr>
-                <tr>
-                  <td>4</td>
-                  <td>Philip Chaney</td>
-                  <td>$38,735</td>
-                  <td>Korea, South</td>
-                </tr>
-              </tbody>
-            </table>
           </div>
         </div>
       </div>

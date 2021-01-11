@@ -1,9 +1,9 @@
-<h3>新增自傳</h3>
+<h3>新增學歷</h3>
 <hr>
 <form action="./api/add.php" method="post" enctype="multipart/form-data">
     <table>
         <tr>
-            <td style="vertical-align: top;">自傳</td>
+            <td style="vertical-align: top;">學歷</td>
             <td><textarea name="text" style="width: 300px;height:200px;"></textarea></td>
         </tr>
         <tr>
