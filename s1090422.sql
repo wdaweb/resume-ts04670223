@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.0.1
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
--- 主機： localhost
--- 產生時間： 2021 年 01 月 11 日 03:48
--- 伺服器版本： 5.5.64-MariaDB
--- PHP 版本： 7.3.14
+-- 主機： 127.0.0.1
+-- 產生時間： 2021-01-12 09:38:36
+-- 伺服器版本： 10.4.14-MariaDB
+-- PHP 版本： 7.4.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -30,8 +29,8 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `ad` (
   `id` int(11) UNSIGNED NOT NULL,
-  `text` text COLLATE utf8mb4_unicode_ci,
-  `img` text COLLATE utf8mb4_unicode_ci,
+  `text` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `img` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `sh` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -74,8 +73,8 @@ INSERT INTO `admin` (`id`, `acc`, `pw`) VALUES
 
 CREATE TABLE `aut` (
   `id` int(11) UNSIGNED NOT NULL,
-  `text` text COLLATE utf8mb4_unicode_ci,
-  `img` text COLLATE utf8mb4_unicode_ci,
+  `text` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `img` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `sh` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -84,7 +83,8 @@ CREATE TABLE `aut` (
 --
 
 INSERT INTO `aut` (`id`, `text`, `img`, `sh`) VALUES
-(2, '我畢業於德明財經科技大學財務金融系，父母親教育採用民主制度，一切都用溝通來取代打罵，因此我對待他人也都以溝通為主，盡量不發生衝突，因此我們一家相當和睦。\r\n　　我最喜歡的一句話是史邁爾說的：「對微小事物的仔細觀察，就是事業、藝術、科學及生命各方面的成功秘訣。」這句話讓我在往後的人生都更注重小細節，因為這使我更加清楚每件事的重點，另外我喜歡有效率的做事情，會盡可能找出最省時省力的方法完成每一件事。', '', 1);
+(2, '我畢業於德明財經科技大學財務金融系，父母親教育採用民主制度，一切都用溝通來取代打罵，因此我對待他人也都以溝通為主，盡量不發生衝突，因此我們一家相當和睦。\r\n　　我最喜歡的一句話是史邁爾說的：「對微小事物的仔細觀察，就是事業、藝術、科學及生命各方面的成功秘訣。」這句話讓我在往後的人生都更注重小細節，因為這使我更加清楚每件事的重點，另外我喜歡有效率的做事情，會盡可能找出最省時省力的方法完成每一件事。', '', 1),
+(12, 'sadsadadsad', '', 1);
 
 -- --------------------------------------------------------
 
@@ -165,7 +165,6 @@ INSERT INTO `bottom` (`id`, `bottom`) VALUES
 CREATE TABLE `education` (
   `id` int(11) UNSIGNED NOT NULL,
   `text` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `parent` int(11) UNSIGNED NOT NULL,
   `sh` int(1) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -173,9 +172,10 @@ CREATE TABLE `education` (
 -- 傾印資料表的資料 `education`
 --
 
-INSERT INTO `education` (`id`, `text`, `parent`, `sh`) VALUES
-(3, '德明財經科技大學', 0, 1),
-(4, '財務金融系2016年~2020年', 3, 1);
+INSERT INTO `education` (`id`, `text`, `sh`) VALUES
+(3, '德明財經科技大學', 1),
+(4, '財務金融系2016年~2020年', 1),
+(5, 'sadsad', 1);
 
 -- --------------------------------------------------------
 
@@ -186,7 +186,6 @@ INSERT INTO `education` (`id`, `text`, `parent`, `sh`) VALUES
 CREATE TABLE `experience` (
   `id` int(11) UNSIGNED NOT NULL,
   `text` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `parent` int(11) UNSIGNED NOT NULL,
   `sh` int(1) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -194,9 +193,10 @@ CREATE TABLE `experience` (
 -- 傾印資料表的資料 `experience`
 --
 
-INSERT INTO `experience` (`id`, `text`, `parent`, `sh`) VALUES
-(3, '水礦科技股份有限公司', 0, 1),
-(4, '一般行政2019年~2020年', 3, 1);
+INSERT INTO `experience` (`id`, `text`, `sh`) VALUES
+(3, '水礦科技股份有限公司', 1),
+(4, '一般行政2019年~2020年', 1),
+(7, 'sadsad', 1);
 
 -- --------------------------------------------------------
 
@@ -206,8 +206,8 @@ INSERT INTO `experience` (`id`, `text`, `parent`, `sh`) VALUES
 
 CREATE TABLE `image` (
   `id` int(11) UNSIGNED NOT NULL,
-  `text` text COLLATE utf8mb4_unicode_ci,
-  `img` text COLLATE utf8mb4_unicode_ci,
+  `text` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `img` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `sh` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -237,7 +237,7 @@ CREATE TABLE `invoices` (
   `period` tinyint(1) UNSIGNED NOT NULL,
   `payment` int(11) UNSIGNED NOT NULL,
   `date` date NOT NULL,
-  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `create_time` timestamp NOT NULL DEFAULT current_timestamp(),
   `name_id` varchar(11) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -275,7 +275,7 @@ CREATE TABLE `login` (
   `acc` varchar(16) COLLATE utf8mb4_unicode_ci NOT NULL,
   `pw` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(32) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `create_time` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -350,8 +350,8 @@ INSERT INTO `menu` (`id`, `text`, `href`, `parent`, `sh`) VALUES
 
 CREATE TABLE `mvim` (
   `id` int(11) UNSIGNED NOT NULL,
-  `text` text COLLATE utf8mb4_unicode_ci,
-  `img` text COLLATE utf8mb4_unicode_ci,
+  `text` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `img` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `sh` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -374,8 +374,8 @@ INSERT INTO `mvim` (`id`, `text`, `img`, `sh`) VALUES
 
 CREATE TABLE `news` (
   `id` int(11) UNSIGNED NOT NULL,
-  `text` text COLLATE utf8mb4_unicode_ci,
-  `img` text COLLATE utf8mb4_unicode_ci,
+  `text` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `img` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `sh` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -401,20 +401,22 @@ INSERT INTO `news` (`id`, `text`, `img`, `sh`) VALUES
 
 CREATE TABLE `port` (
   `id` int(11) UNSIGNED NOT NULL,
-  `text` text COLLATE utf8mb4_unicode_ci,
-  `img` text COLLATE utf8mb4_unicode_ci,
-  `sh` int(1) NOT NULL
+  `text` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `img` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `sh` int(1) NOT NULL,
+  `text2` text COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- 傾印資料表的資料 `port`
 --
 
-INSERT INTO `port` (`id`, `text`, `img`, `sh`) VALUES
-(1, 'Illustrator', 'ai1.jpg', 0),
-(3, 'Photoshop', 'ps1.jpg', 1),
-(4, 'Photoshop', 'ps2.jpg', 1),
-(5, 'Photoshop', 'ps3.jpg', 1);
+INSERT INTO `port` (`id`, `text`, `img`, `sh`, `text2`) VALUES
+(1, 'Illustrat', 'ai1.jpg', 1, '0'),
+(3, 'Photoshop', 'ps1.jpg', 1, '0'),
+(4, 'Photoshop', 'ps2.jpg', 1, '0'),
+(5, 'Photoshop', 'ps3.jpg', 1, '0'),
+(14, 'dsdsds', 'image-05.jpg', 1, '0');
 
 -- --------------------------------------------------------
 
@@ -456,7 +458,19 @@ INSERT INTO `re_menu` (`id`, `text`, `href`, `parent`, `sh`) VALUES
 (3, '網站首頁', '#intro', 0, 1),
 (17, '自傳', '#aut', 0, 1),
 (18, '學歷', '#education', 0, 1),
-(19, '經歷', '#experience', 0, 1);
+(19, '經歷', '#experience', 0, 1),
+(20, 'asaaas', '', 1, 1),
+(21, 'sadsa', '', 1, 1),
+(22, 'adas', '', 1, 1),
+(23, 'asaaas', '', 1, 1),
+(24, 'adsad', '', 3, 1),
+(25, 'sadsadsa', '', 1, 1),
+(26, 'asdas', '', 1, 1),
+(27, 'asdas', '', 1, 1),
+(28, 'asdas', '', 1, 1),
+(29, 'asaaas', '', 1, 1),
+(30, 'asaaas', '', 1, 1),
+(31, 'dadsa', '', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -466,8 +480,8 @@ INSERT INTO `re_menu` (`id`, `text`, `href`, `parent`, `sh`) VALUES
 
 CREATE TABLE `title` (
   `id` int(11) UNSIGNED NOT NULL,
-  `text` text COLLATE utf8mb4_unicode_ci,
-  `img` text COLLATE utf8mb4_unicode_ci,
+  `text` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `img` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `sh` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -497,7 +511,7 @@ CREATE TABLE `total` (
 --
 
 INSERT INTO `total` (`id`, `total`) VALUES
-(1, 1025);
+(1, 1029);
 
 --
 -- 已傾印資料表的索引
@@ -637,7 +651,7 @@ ALTER TABLE `admin`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `aut`
 --
 ALTER TABLE `aut`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `award_numbers`
@@ -655,13 +669,13 @@ ALTER TABLE `bottom`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `education`
 --
 ALTER TABLE `education`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `experience`
 --
 ALTER TABLE `experience`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `image`
@@ -706,6 +720,12 @@ ALTER TABLE `news`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
+-- 使用資料表自動遞增(AUTO_INCREMENT) `port`
+--
+ALTER TABLE `port`
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
+--
 -- 使用資料表自動遞增(AUTO_INCREMENT) `q1_total`
 --
 ALTER TABLE `q1_total`
@@ -715,7 +735,7 @@ ALTER TABLE `q1_total`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `re_menu`
 --
 ALTER TABLE `re_menu`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `title`

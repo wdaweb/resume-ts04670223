@@ -1,16 +1,15 @@
 <?php
 include_once "../base.php";
 
-$subs=$Education->all(['parent'=>$_GET['id']]);
+$subs=$Port->all(['parent'=>$_GET['id']]);
 
 ?>
-<h3>編輯次選單</h3>
+<h3>編輯作品集介紹</h3>
 <hr>
-<form action="./api/editsub.php" method="post" enctype="multipart/form-data">
+<form action="./api/por_editsub.php" method="post" enctype="multipart/form-data">
     <table>
         <tr>
-            <td>次選單文字:</td>
-            <td>次選單連結:</td>
+            <td>作品集文字:</td>
             <td>刪除</td>
         </tr>
         <?php
@@ -19,7 +18,6 @@ $subs=$Education->all(['parent'=>$_GET['id']]);
             ?>
         <tr>
             <td><input type="text" name="text[]" value="<?=$sub['text'];?>"></td>
-            <td><input type="text" name="href[]" value="<?=$sub['href'];?>"></td>
             <td><input type="checkbox" name="del[]" value="<?=$sub['id'];?>"></td>
             <input type="hidden" name="id[]" value="<?=$sub['id'];?>">
         </tr>
@@ -43,7 +41,6 @@ function more(){
     let str=`
     <tr>
     <td><input type="text" name="text2[]" value=""></td>
-    <td><input type="text" name="href2[]" value=""></td>
     </tr>
     `
     $("#btn").before(str)

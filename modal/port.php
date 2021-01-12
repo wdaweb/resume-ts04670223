@@ -6,6 +6,10 @@
         <td>作品集圖片:</td>
         <td><input type="file" name="img" id=""></td>
     </tr>
+    <tr>
+        <td>作品集文字:</td>
+        <td><input type="text" name="text" id=""></td>
+    </tr>
 
     <tr>
         <td colspan="2">

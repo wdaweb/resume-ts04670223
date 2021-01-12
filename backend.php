@@ -42,13 +42,6 @@ The above copyright notice and this permission notice shall be included in all c
 
 <body class="">
   <div class="wrapper ">
-<div id="cover" style="display:none; ">
-        <div id="coverr">
-            <a style="position:absolute; right:3px; top:4px; cursor:pointer; z-index:9999;"
-                onclick="cl('#cover')">X</a>
-            <div id="cvr" style="position:absolute; width:99%; height:100%; margin:auto; z-index:9898;"></div>
-        </div>
-    </div>
     <div class="sidebar" data-color="purple" data-background-color="white" data-image="assets/img/sidebar-1.jpg">
       <!--
         Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
@@ -60,14 +53,14 @@ The above copyright notice and this permission notice shall be included in all c
         </a></div>
       <div class="sidebar-wrapper">
         <ul class="nav">
-          <li class="nav-item">
-            <a class="nav-link" href="?do=news">
+          <li class="nav-item" >
+            <a class="nav-link" href="?do=news" >
               <i class="material-icons">dashboard</i>
               <p>履歷表</p>
             </a>
           </li>
-          <li class="nav-item active ">
-            <a class="nav-link" href="?do=admin">
+          <li class="nav-item">
+            <a class="nav-link" href="?do=admin" >
               <i class="material-icons">person</i>
               <p>編輯帳號</p>
             </a>
@@ -146,7 +139,7 @@ The above copyright notice and this permission notice shall be included in all c
 
 
 
-      $do = (isset($_GET['do'])) ? $_GET['do'] : 'news';
+      $do =isset($_GET['do']) ? $_GET['do'] : 'news';
       $file = "./backend/" . $do . ".php";
       if (file_exists($file)) {
         include $file;

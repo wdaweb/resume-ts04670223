@@ -189,7 +189,9 @@ h6 {
 
 #intro .carousel-item::before {
   content: '';
-  background-color: rgba(0, 0, 0, 0.7);
+  clip-path: polygon(0 0, 48% 0, 65% 100%, 0% 100%);
+  background: linear-gradient(60deg,#853bca9f 10%,#005c99de 50%);
+  backdrop-filter: blur(10px);
   position: absolute;
   height: 100%;
   width: 100%;
@@ -197,6 +199,7 @@ h6 {
   right: 0;
   left: 0;
   bottom: 0;
+
 }
 
 #intro .carousel-container {

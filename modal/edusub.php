@@ -4,13 +4,12 @@ include_once "../base.php";
 $subs=$Education->all(['parent'=>$_GET['id']]);
 
 ?>
-<h3>編輯次選單</h3>
+<h3>編輯學歷介紹</h3>
 <hr>
-<form action="./api/editsub.php" method="post" enctype="multipart/form-data">
+<form action="./api/edu_editsub.php" method="post" enctype="multipart/form-data">
     <table>
         <tr>
-            <td>次選單文字:</td>
-            <td>次選單連結:</td>
+            <td>學歷介紹:</td>
             <td>刪除</td>
         </tr>
         <?php
@@ -19,7 +18,6 @@ $subs=$Education->all(['parent'=>$_GET['id']]);
             ?>
         <tr>
             <td><input type="text" name="text[]" value="<?=$sub['text'];?>"></td>
-            <td><input type="text" name="href[]" value="<?=$sub['href'];?>"></td>
             <td><input type="checkbox" name="del[]" value="<?=$sub['id'];?>"></td>
             <input type="hidden" name="id[]" value="<?=$sub['id'];?>">
         </tr>
@@ -32,7 +30,7 @@ $subs=$Education->all(['parent'=>$_GET['id']]);
                 <input type="hidden" name="parent" value="<?= $_GET['id']; ?>">
                 <input type="submit" value="修改確定">
                 <input type="reset" value="重置">
-                <input type="button" value="更多次選單" onclick="more()">
+                <input type="button" value="更多學歷介紹" onclick="more()">
             </td>
         </tr>
     </table>
@@ -42,8 +40,7 @@ $subs=$Education->all(['parent'=>$_GET['id']]);
 function more(){
     let str=`
     <tr>
-    <td><input type="text" name="text2[]" value=""></td>
-    <td><input type="text" name="href2[]" value=""></td>
+    <td><textarea name="text2[]" style="width: 300px;height:200px;"></textarea></td>
     </tr>
     `
     $("#btn").before(str)

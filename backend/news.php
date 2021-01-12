@@ -6,7 +6,7 @@
           <div class="card-header card-header-tabs card-header-primary">
             <div class="nav-tabs-navigation">
               <div class="nav-tabs-wrapper">
-                <span class="nav-tabs-title">Tasks:</span>
+                <span class="nav-tabs-title">履歷表:</span>
                 <ul class="nav nav-tabs" data-tabs="tabs">
                   <li class="nav-item">
                     <a class="nav-link active" href="#profile" data-toggle="tab">
@@ -41,6 +41,11 @@
               <div class="tab-pane active" id="profile">
                 <form method="post" action="./api/edit.php">
                   <table class="table">
+                    <thead class="text-primary">
+                      <th>顯示</th>
+                      <th>自傳</th>
+                      <th>編輯</th>
+                    </thead>
                     <tbody>
                       <?php
 
@@ -84,9 +89,14 @@
               <div class="tab-pane" id="messages">
                 <form method="post" action="./api/edit.php">
                   <table class="table">
+                    <thead class="text-primary">
+                      <th>顯示</th>
+                      <th>學校</th>
+                      <th>編輯</th>
+                    </thead>
                     <tbody>
                       <?php
-                      $Edu = $Education->all(['parent' => 0]);
+                      $Edu = $Education->all();
 
                       foreach ($Edu as $row) {
                       ?>
@@ -105,7 +115,6 @@
                           <input type="hidden" name="id[]" value="<?= $row['id']; ?>">
                           <input type="hidden" name="table" value="education">
                           <td class="td-actions text-right">
-                            <input class="btn btn-primary btn-block" type="button" value="編輯學歷介紹" onclick="op('#cover','#cvr','./modal/edu.php?table=education&id=<?= $row['id']; ?>')">
                             <button type="submit" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm">
                               <i class="material-icons">edit</i>
                             </button>
@@ -127,9 +136,14 @@
               <div class="tab-pane" id="settings">
                 <form method="post" action="./api/edit.php">
                   <table class="table">
+                    <thead class="text-primary">
+                      <th>顯示</th>
+                      <th>公司</th>
+                      <th>編輯</th>
+                    </thead>
                     <tbody>
                       <?php
-                      $Ex = $Experience->all(['parent' => 0]);
+                      $Ex = $Experience->all();
 
                       foreach ($Ex as $row) {
                       ?>
@@ -148,7 +162,6 @@
                           <input type="hidden" name="id[]" value="<?= $row['id']; ?>">
                           <input type="hidden" name="table" value="experience">
                           <td class="td-actions text-right">
-                            <input class="btn btn-primary btn-block" type="button" value="編輯經歷介紹" onclick="op('#cover','#cvr','./modal/submenu.php?table=experience&id=<?= $row['id']; ?>')">
                             <button type="submit" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm">
                               <i class="material-icons">edit</i>
                             </button>
@@ -170,6 +183,13 @@
               <div class="tab-pane" id="port">
                 <form method="post" action="./api/edit.php">
                   <table class="table">
+                    <thead class="text-primary">
+                      <th>顯示</th>
+                      <th>作品圖片</th>
+                      <th>作品主題</th>
+                      <th>作品分類</th>
+                      <th>編輯</th>
+                    </thead>
                     <tbody>
                       <?php
                       $po = $Port->all();
@@ -190,8 +210,8 @@
                           <td><input type="text" name="text[]" value="<?= $row['text']; ?>" style="width:50%"></td>
                           <input type="hidden" name="id[]" value="<?= $row['id']; ?>">
                           <input type="hidden" name="table" value="port">
+                          <td></td>
                           <td class="td-actions text-right">
-                            <input class="btn btn-primary btn-block" type="button" value="編輯作品集介紹" onclick="op('#cover','#cvr','./modal/portsub.php?table=port&id=<?= $row['id']; ?>')">
                             <button type="submit" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm">
                               <i class="material-icons">edit</i>
                             </button>
@@ -204,7 +224,7 @@
                       }
                       ?>
                       <tr>
-                        <td width="200px"><input class="btn btn-primary btn-block" type="button" onclick="op('#cover','#cvr','./modal/port.php?table=experience')" value="新增"></td>
+                        <td width="200px"><input class="btn btn-primary btn-block" type="button" onclick="op('#cover','#cvr','./modal/port.php?table=port')" value="新增"></td>
                       </tr>
                     </tbody>
                   </table>
