@@ -13,19 +13,25 @@ foreach ($_POST['id'] as $key => $id) {
         $row = $db->find($id);
 
         switch ($table) {
-            case "title":
-                $row['sh'] = ($id == $_POST['sh']) ? 1 : 0;
-                break;
-            case "port":
+            case "re_port":
+                $row['class'] = $_POST['class'][$key];
                 $row['text2'] = $_POST['text2'][$key];
+                $row['sh'] = in_array($id, $_POST['sh']) ? 1 : 0;
+                break;
+            case "re_skill":
+                $row['class'] = $_POST['class'][$key];
                 $row['sh'] = in_array($id, $_POST['sh']) ? 1 : 0;
                 break;
             case "ad":
             case "mvim":
             case "image":
-            case "aut":
-            case "education":
-            case "experience":
+            case "re_education":
+            case "re_experience":
+                $row['text2'] = $_POST['text2'][$key];
+                $row['sh'] = in_array($id, $_POST['sh']) ? 1 : 0;
+                break;
+            case "re_aut":
+                $row['text2'] = $_POST['text2'][$key];
                 $row['sh'] = in_array($id, $_POST['sh']) ? 1 : 0;
                 break;
             case "total";
@@ -34,11 +40,11 @@ foreach ($_POST['id'] as $key => $id) {
             case "bottom";
                 $row['bottom'] = $_POST['bottom'];
                 break;
-            case "admin":
+            case "re_admin":
                 $row['acc'] = $_POST['acc'][$key];
                 $row['pw'] = $_POST['pw'][$key];
                 break;
-            case "menu":
+            case "re_menu":
                 $row['href'] = $_POST['href'][$key];
                 $row['sh'] = in_array($id, $_POST['sh']) ? 1 : 0;
                 break;

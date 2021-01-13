@@ -156,12 +156,13 @@ $Mvim=new DB("mvim");
 $Image=new DB("image");
 $Total=new DB("total");
 $Bottom=new DB("bottom");
-$Aut=new DB("aut");
-$Admin=new DB("admin");
+$Aut=new DB("re_aut");
+$Admin=new DB("re_admin");
 $Menu=new DB("re_menu");
-$Education=new DB("education");
-$Experience=new DB("experience");
-$Port=new DB("port");
+$Education=new DB("re_education");
+$Experience=new DB("re_experience");
+$Port=new DB("re_port");
+$Skill=new DB("re_skill");
 
 if (empty($_SESSION['total'])) {
     $total=$Total->find(1);

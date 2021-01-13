@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： 127.0.0.1
--- 產生時間： 2021-01-12 09:38:36
+-- 產生時間： 2021-01-13 16:08:19
 -- 伺服器版本： 10.4.14-MariaDB
 -- PHP 版本： 7.4.10
 
@@ -64,27 +64,6 @@ CREATE TABLE `admin` (
 INSERT INTO `admin` (`id`, `acc`, `pw`) VALUES
 (3, 'admin', '1234'),
 (4, 'ass', '789');
-
--- --------------------------------------------------------
-
---
--- 資料表結構 `aut`
---
-
-CREATE TABLE `aut` (
-  `id` int(11) UNSIGNED NOT NULL,
-  `text` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `img` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `sh` int(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- 傾印資料表的資料 `aut`
---
-
-INSERT INTO `aut` (`id`, `text`, `img`, `sh`) VALUES
-(2, '我畢業於德明財經科技大學財務金融系，父母親教育採用民主制度，一切都用溝通來取代打罵，因此我對待他人也都以溝通為主，盡量不發生衝突，因此我們一家相當和睦。\r\n　　我最喜歡的一句話是史邁爾說的：「對微小事物的仔細觀察，就是事業、藝術、科學及生命各方面的成功秘訣。」這句話讓我在往後的人生都更注重小細節，因為這使我更加清楚每件事的重點，另外我喜歡有效率的做事情，會盡可能找出最省時省力的方法完成每一件事。', '', 1),
-(12, 'sadsadadsad', '', 1);
 
 -- --------------------------------------------------------
 
@@ -155,48 +134,6 @@ CREATE TABLE `bottom` (
 
 INSERT INTO `bottom` (`id`, `bottom`) VALUES
 (1, '2020科技大學頁尾版權');
-
--- --------------------------------------------------------
-
---
--- 資料表結構 `education`
---
-
-CREATE TABLE `education` (
-  `id` int(11) UNSIGNED NOT NULL,
-  `text` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `sh` int(1) UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- 傾印資料表的資料 `education`
---
-
-INSERT INTO `education` (`id`, `text`, `sh`) VALUES
-(3, '德明財經科技大學', 1),
-(4, '財務金融系2016年~2020年', 1),
-(5, 'sadsad', 1);
-
--- --------------------------------------------------------
-
---
--- 資料表結構 `experience`
---
-
-CREATE TABLE `experience` (
-  `id` int(11) UNSIGNED NOT NULL,
-  `text` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `sh` int(1) UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- 傾印資料表的資料 `experience`
---
-
-INSERT INTO `experience` (`id`, `text`, `sh`) VALUES
-(3, '水礦科技股份有限公司', 1),
-(4, '一般行政2019年~2020年', 1),
-(7, 'sadsad', 1);
 
 -- --------------------------------------------------------
 
@@ -396,31 +333,6 @@ INSERT INTO `news` (`id`, `text`, `img`, `sh`) VALUES
 -- --------------------------------------------------------
 
 --
--- 資料表結構 `port`
---
-
-CREATE TABLE `port` (
-  `id` int(11) UNSIGNED NOT NULL,
-  `text` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `img` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `sh` int(1) NOT NULL,
-  `text2` text COLLATE utf8mb4_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- 傾印資料表的資料 `port`
---
-
-INSERT INTO `port` (`id`, `text`, `img`, `sh`, `text2`) VALUES
-(1, 'Illustrat', 'ai1.jpg', 1, '0'),
-(3, 'Photoshop', 'ps1.jpg', 1, '0'),
-(4, 'Photoshop', 'ps2.jpg', 1, '0'),
-(5, 'Photoshop', 'ps3.jpg', 1, '0'),
-(14, 'dsdsds', 'image-05.jpg', 1, '0');
-
--- --------------------------------------------------------
-
---
 -- 資料表結構 `q1_total`
 --
 
@@ -439,6 +351,86 @@ INSERT INTO `q1_total` (`id`, `total`) VALUES
 -- --------------------------------------------------------
 
 --
+-- 資料表結構 `re_admin`
+--
+
+CREATE TABLE `re_admin` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `acc` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `pw` text COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- 傾印資料表的資料 `re_admin`
+--
+
+INSERT INTO `re_admin` (`id`, `acc`, `pw`) VALUES
+(3, 'admin', '1234'),
+(4, 'ass', '789');
+
+-- --------------------------------------------------------
+
+--
+-- 資料表結構 `re_aut`
+--
+
+CREATE TABLE `re_aut` (
+  `id` int(11) UNSIGNED NOT NULL,
+  `text` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `img` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `sh` int(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- 傾印資料表的資料 `re_aut`
+--
+
+INSERT INTO `re_aut` (`id`, `text`, `img`, `sh`) VALUES
+(2, '我畢業於德明財經科技大學財務金融系，父母親教育採用民主制度，一切都用溝通來取代打罵，因此我對待他人也都以溝通為主，盡量不發生衝突，因此我們一家相當和睦。\r\n　　我最喜歡的一句話是史邁爾說的：「對微小事物的仔細觀察，就是事業、藝術、科學及生命各方面的成功秘訣。」這句話讓我在往後的人生都更注重小細節，因為這使我更加清楚每件事的重點，另外我喜歡有效率的做事情，會盡可能找出最省時省力的方法完成每一件事。', '', 1);
+
+-- --------------------------------------------------------
+
+--
+-- 資料表結構 `re_education`
+--
+
+CREATE TABLE `re_education` (
+  `id` int(11) UNSIGNED NOT NULL,
+  `text` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `text2` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `sh` int(1) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- 傾印資料表的資料 `re_education`
+--
+
+INSERT INTO `re_education` (`id`, `text`, `text2`, `sh`) VALUES
+(3, '德明財經科技大學', '財務金融系2016年~2020年', 1);
+
+-- --------------------------------------------------------
+
+--
+-- 資料表結構 `re_experience`
+--
+
+CREATE TABLE `re_experience` (
+  `id` int(11) UNSIGNED NOT NULL,
+  `text` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `text2` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `sh` int(1) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- 傾印資料表的資料 `re_experience`
+--
+
+INSERT INTO `re_experience` (`id`, `text`, `text2`, `sh`) VALUES
+(3, '水礦科技股份有限公司', '一般行政2019年~2020年', 1);
+
+-- --------------------------------------------------------
+
+--
 -- 資料表結構 `re_menu`
 --
 
@@ -446,7 +438,6 @@ CREATE TABLE `re_menu` (
   `id` int(11) UNSIGNED NOT NULL,
   `text` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `href` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `parent` int(11) UNSIGNED NOT NULL,
   `sh` int(1) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -454,23 +445,50 @@ CREATE TABLE `re_menu` (
 -- 傾印資料表的資料 `re_menu`
 --
 
-INSERT INTO `re_menu` (`id`, `text`, `href`, `parent`, `sh`) VALUES
-(3, '網站首頁', '#intro', 0, 1),
-(17, '自傳', '#aut', 0, 1),
-(18, '學歷', '#education', 0, 1),
-(19, '經歷', '#experience', 0, 1),
-(20, 'asaaas', '', 1, 1),
-(21, 'sadsa', '', 1, 1),
-(22, 'adas', '', 1, 1),
-(23, 'asaaas', '', 1, 1),
-(24, 'adsad', '', 3, 1),
-(25, 'sadsadsa', '', 1, 1),
-(26, 'asdas', '', 1, 1),
-(27, 'asdas', '', 1, 1),
-(28, 'asdas', '', 1, 1),
-(29, 'asaaas', '', 1, 1),
-(30, 'asaaas', '', 1, 1),
-(31, 'dadsa', '', 1, 1);
+INSERT INTO `re_menu` (`id`, `text`, `href`, `sh`) VALUES
+(3, '網站首頁', '#intro', 1),
+(18, '自傳', '#aut', 1),
+(32, '學歷', '#education', 1),
+(33, '經歷', '#experience', 1),
+(34, '作品集', '#portfolio', 1);
+
+-- --------------------------------------------------------
+
+--
+-- 資料表結構 `re_port`
+--
+
+CREATE TABLE `re_port` (
+  `id` int(11) UNSIGNED NOT NULL,
+  `text` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `img` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `sh` int(1) NOT NULL,
+  `text2` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `class` text COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- 傾印資料表的資料 `re_port`
+--
+
+INSERT INTO `re_port` (`id`, `text`, `img`, `sh`, `text2`, `class`) VALUES
+(1, 'illustrator', 'ai1.jpg', 1, '女孩', '3'),
+(3, 'Photoshop', 'ps1.jpg', 1, '年曆', '3'),
+(4, 'Photoshop', 'ps2.jpg', 1, '酒標', '3'),
+(5, 'Photoshop', 'ps3.jpg', 1, '旅遊海報', '3');
+
+-- --------------------------------------------------------
+
+--
+-- 資料表結構 `re_skill`
+--
+
+CREATE TABLE `re_skill` (
+  `id` int(11) UNSIGNED NOT NULL,
+  `img` text NOT NULL,
+  `text` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `class` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -511,7 +529,7 @@ CREATE TABLE `total` (
 --
 
 INSERT INTO `total` (`id`, `total`) VALUES
-(1, 1029);
+(1, 1030);
 
 --
 -- 已傾印資料表的索引
@@ -530,12 +548,6 @@ ALTER TABLE `admin`
   ADD PRIMARY KEY (`id`);
 
 --
--- 資料表索引 `aut`
---
-ALTER TABLE `aut`
-  ADD PRIMARY KEY (`id`);
-
---
 -- 資料表索引 `award_numbers`
 --
 ALTER TABLE `award_numbers`
@@ -545,18 +557,6 @@ ALTER TABLE `award_numbers`
 -- 資料表索引 `bottom`
 --
 ALTER TABLE `bottom`
-  ADD PRIMARY KEY (`id`);
-
---
--- 資料表索引 `education`
---
-ALTER TABLE `education`
-  ADD PRIMARY KEY (`id`);
-
---
--- 資料表索引 `experience`
---
-ALTER TABLE `experience`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -602,21 +602,51 @@ ALTER TABLE `news`
   ADD PRIMARY KEY (`id`);
 
 --
--- 資料表索引 `port`
---
-ALTER TABLE `port`
-  ADD PRIMARY KEY (`id`);
-
---
 -- 資料表索引 `q1_total`
 --
 ALTER TABLE `q1_total`
   ADD PRIMARY KEY (`id`);
 
 --
+-- 資料表索引 `re_admin`
+--
+ALTER TABLE `re_admin`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- 資料表索引 `re_aut`
+--
+ALTER TABLE `re_aut`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- 資料表索引 `re_education`
+--
+ALTER TABLE `re_education`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- 資料表索引 `re_experience`
+--
+ALTER TABLE `re_experience`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- 資料表索引 `re_menu`
 --
 ALTER TABLE `re_menu`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- 資料表索引 `re_port`
+--
+ALTER TABLE `re_port`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- 資料表索引 `re_skill`
+--
+ALTER TABLE `re_skill`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -648,12 +678,6 @@ ALTER TABLE `admin`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- 使用資料表自動遞增(AUTO_INCREMENT) `aut`
---
-ALTER TABLE `aut`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
-
---
 -- 使用資料表自動遞增(AUTO_INCREMENT) `award_numbers`
 --
 ALTER TABLE `award_numbers`
@@ -664,18 +688,6 @@ ALTER TABLE `award_numbers`
 --
 ALTER TABLE `bottom`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- 使用資料表自動遞增(AUTO_INCREMENT) `education`
---
-ALTER TABLE `education`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
--- 使用資料表自動遞增(AUTO_INCREMENT) `experience`
---
-ALTER TABLE `experience`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `image`
@@ -720,22 +732,52 @@ ALTER TABLE `news`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
--- 使用資料表自動遞增(AUTO_INCREMENT) `port`
---
-ALTER TABLE `port`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
-
---
 -- 使用資料表自動遞增(AUTO_INCREMENT) `q1_total`
 --
 ALTER TABLE `q1_total`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- 使用資料表自動遞增(AUTO_INCREMENT) `re_admin`
+--
+ALTER TABLE `re_admin`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- 使用資料表自動遞增(AUTO_INCREMENT) `re_aut`
+--
+ALTER TABLE `re_aut`
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
+-- 使用資料表自動遞增(AUTO_INCREMENT) `re_education`
+--
+ALTER TABLE `re_education`
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- 使用資料表自動遞增(AUTO_INCREMENT) `re_experience`
+--
+ALTER TABLE `re_experience`
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
 -- 使用資料表自動遞增(AUTO_INCREMENT) `re_menu`
 --
 ALTER TABLE `re_menu`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+
+--
+-- 使用資料表自動遞增(AUTO_INCREMENT) `re_port`
+--
+ALTER TABLE `re_port`
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+
+--
+-- 使用資料表自動遞增(AUTO_INCREMENT) `re_skill`
+--
+ALTER TABLE `re_skill`
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `title`

@@ -52,7 +52,7 @@
       <nav id="nav-menu-container">
         <ul class="nav-menu">
           <?php
-          $mainmu = $Menu->all(['sh' => 1, 'parent' => 0]);
+          $mainmu = $Menu->all(['sh' => 1]);
           foreach ($mainmu as $main) {
           ?>
             <li><a href="<?= $main['href']; ?>"><?= $main['text']; ?></a></li>
@@ -86,12 +86,12 @@
         <div class="carousel-inner" role="listbox">
 
           <div class="carousel-item active">
-            <div class="carousel-background"><img src="front/img/intro-carousel/1.jpg" alt=""></div>
+            <div class="carousel-background"><img src="front/img/intro-carousel/13.jpg" alt=""></div>
             <div class="carousel-container">
               <div class="carousel-content">
 
                 <section id="team">
-                  <div class="col-lg-12 col-md-6 wow fadeInUp">
+                  <div class="col-lg-12 col-md-3 wow fadeInUp">
                     <div class="member">
                       <img src="front/img/my.jpg" class="img-fluid">
                       <div class="member-info">
@@ -195,9 +195,9 @@
 
           ?>
 
-            <div class="col-lg-6 col-md-6 box wow bounceInUp" data-wow-duration="1.4s">
+            <div class="col-lg-12 col-md-6 box wow bounceInUp" data-wow-duration="1.4s">
               <h4 class="title"><a><?= $main['text']; ?></a></h4>
-                  <p class="description"></p>
+                  <p class="description"><?= $main['text2']; ?></p>
             </div>
           <?php }; ?>
         </div>
@@ -218,9 +218,9 @@
 
           ?>
 
-            <div class="col-lg-6 col-md-6 box wow bounceInUp" data-wow-duration="1.4s">
+            <div class="col-lg-12 col-md-6 box wow bounceInUp" data-wow-duration="1.4s">
               <h4 class="title"><a><?= $main['text']; ?></a></h4>
-                  <p class="description"></p>
+                  <p class="description"><?= $main['text2']; ?></p>
             </div>
           <?php }; ?>
 
@@ -253,155 +253,27 @@
         </div>
 
         <div class="row portfolio-container">
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-1 wow fadeInUp">
+<?php
+          $po = $Port->all(['sh' => 1]);
+          foreach ($po as $main) {
+?>
+          <div class="col-lg-4 col-md-6 portfolio-item filter-<?=$main['class'];?> wow fadeInUp">
             <div class="portfolio-wrap">
               <figure>
-                <img src="front/img/portfolio/app2.jpg" class="img-fluid" alt="">
-                <a href="front/img/portfolio/app2.jpg" data-lightbox="portfolio" data-title="App 1" class="link-preview" title="Preview"><i class="ion ion-eye"></i></a>
+                <img src="front/img/portfolio/<?=$main['img'];?>" class="img-fluid" alt="">
+                <a href="front/img/portfolio/<?=$main['img'];?>" data-lightbox="portfolio" data-title="App 1" class="link-preview" title="Preview"><i class="ion ion-eye"></i></a>
                 <a href="#" class="link-details" title="More Details"><i class="ion ion-android-open"></i></a>
               </figure>
 
               <div class="portfolio-info">
-                <h4><a href="#">APP1</a></h4>
-                <p>App</p>
+                <h4><a href="#"><?=$main['text'];?></a></h4>
+                <p><?=$main['text2'];?></p>
               </div>
             </div>
           </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-3 wow fadeInUp" data-wow-delay="0.1s">
-            <div class="portfolio-wrap">
-              <figure>
-                <img src="front/img/portfolio/ps1.jpg" class="img-fluid" alt="">
-                <a href="front/img/portfolio/ps1.jpg" class="link-preview" data-lightbox="portfolio" data-title="Photoshop" title="Preview"><i class="ion ion-eye"></i></a>
-                <a href="#" class="link-details" title="More Details"><i class="ion ion-android-open"></i></a>
-              </figure>
-
-              <div class="portfolio-info">
-                <h4><a href="#">Photoshop</a></h4>
-                <p>年曆</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-1 wow fadeInUp" data-wow-delay="0.2s">
-            <div class="portfolio-wrap">
-              <figure>
-                <img src="front/img/portfolio/app2.jpg" class="img-fluid" alt="">
-                <a href="front/img/portfolio/app2.jpg" class="link-preview" data-lightbox="portfolio" data-title="App 2" title="Preview"><i class="ion ion-eye"></i></a>
-                <a href="#" class="link-details" title="More Details"><i class="ion ion-android-open"></i></a>
-              </figure>
-
-              <div class="portfolio-info">
-                <h4><a href="#">App 2</a></h4>
-                <p>App</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-2 wow fadeInUp">
-            <div class="portfolio-wrap">
-              <figure>
-                <img src="front/img/portfolio/card2.jpg" class="img-fluid" alt="">
-                <a href="front/img/portfolio/card2.jpg" class="link-preview" data-lightbox="portfolio" data-title="Card 2" title="Preview"><i class="ion ion-eye"></i></a>
-                <a href="#" class="link-details" title="More Details"><i class="ion ion-android-open"></i></a>
-              </figure>
-
-              <div class="portfolio-info">
-                <h4><a href="#">Card 2</a></h4>
-                <p>Card</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-3 wow fadeInUp" data-wow-delay="0.1s">
-            <div class="portfolio-wrap">
-              <figure>
-                <img src="front/img/portfolio/ps2.jpg" class="img-fluid" alt="">
-                <a href="front/img/portfolio/ps2.jpg" class="link-preview" data-lightbox="portfolio" data-title="Photoshop" title="Preview"><i class="ion ion-eye"></i></a>
-                <a href="#" class="link-details" title="More Details"><i class="ion ion-android-open"></i></a>
-              </figure>
-
-              <div class="portfolio-info">
-                <h4><a href="#">Photoshop</a></h4>
-                <p>酒標</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-app wow fadeInUp" data-wow-delay="0.2s">
-            <div class="portfolio-wrap">
-              <figure>
-                <img src="front/img/portfolio/app3.jpg" class="img-fluid" alt="">
-                <a href="front/img/portfolio/app3.jpg" class="link-preview" data-lightbox="portfolio" data-title="App 3" title="Preview"><i class="ion ion-eye"></i></a>
-                <a href="#" class="link-details" title="More Details"><i class="ion ion-android-open"></i></a>
-              </figure>
-
-              <div class="portfolio-info">
-                <h4><a href="#">App 3</a></h4>
-                <p>App</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-2 wow fadeInUp">
-            <div class="portfolio-wrap">
-              <figure>
-                <img src="front/img/portfolio/card1.jpg" class="img-fluid" alt="">
-                <a href="front/img/portfolio/card1.jpg" class="link-preview" data-lightbox="portfolio" data-title="Card 1" title="Preview"><i class="ion ion-eye"></i></a>
-                <a href="#" class="link-details" title="More Details"><i class="ion ion-android-open"></i></a>
-              </figure>
-
-              <div class="portfolio-info">
-                <h4><a href="#">Card 1</a></h4>
-                <p>Card</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-2 wow fadeInUp" data-wow-delay="0.1s">
-            <div class="portfolio-wrap">
-              <figure>
-                <img src="front/img/portfolio/card3.jpg" class="img-fluid" alt="">
-                <a href="front/img/portfolio/card3.jpg" class="link-preview" data-lightbox="portfolio" data-title="Card 3" title="Preview"><i class="ion ion-eye"></i></a>
-                <a href="#" class="link-details" title="More Details"><i class="ion ion-android-open"></i></a>
-              </figure>
-
-              <div class="portfolio-info">
-                <h4><a href="#">Card 3</a></h4>
-                <p>Card</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-3 wow fadeInUp" data-wow-delay="0.2s">
-            <div class="portfolio-wrap">
-              <figure>
-                <img src="front/img/portfolio/ps3.jpg" class="img-fluid" alt="">
-                <a href="front/img/portfolio/ps3.jpg" class="link-preview" data-lightbox="portfolio" data-title="Photoshop" title="Preview"><i class="ion ion-eye"></i></a>
-                <a href="#" class="link-details" title="More Details"><i class="ion ion-android-open"></i></a>
-              </figure>
-
-              <div class="portfolio-info">
-                <h4><a href="#">Photoshop</a></h4>
-                <p>旅遊海報</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6 portfolio-item filter-3 wow fadeInUp" data-wow-delay="0.2s">
-            <div class="portfolio-wrap">
-              <figure>
-                <img src="front/img/portfolio/ai1.jpg" class="img-fluid" alt="">
-                <a href="front/img/portfolio/ai1.jpg" class="link-preview" data-lightbox="portfolio" data-title="Illustrator" title="Preview"><i class="ion ion-eye"></i></a>
-                <a href="#" class="link-details" title="More Details"><i class="ion ion-android-open"></i></a>
-              </figure>
-
-              <div class="portfolio-info">
-                <h4><a href="#">Illustrator</a></h4>
-                <p>女孩</p>
-              </div>
-            </div>
-          </div>
+          <?php
+          }
+?>
 
         </div>
 

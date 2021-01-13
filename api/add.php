@@ -19,12 +19,22 @@ switch($table){
     case"title":
         $data['sh']=0;
     break;
-    case"admin":
+    case"re_admin":
         $data['acc']=$_POST['acc'];
         $data['pw']=$_POST['pw'];
     break;
-    case"menu":
-        $data['href']=$_POST['href'];
+    case"re_menu":
+        $data['text2']=$_POST['text2'];
+        $data['class']=$_POST['class'];
+        $data['sh']=1;
+    break;
+    case"re_port":
+        $data['text2']=$_POST['text2'];
+        $data['class']=$_POST['class'];
+        $data['sh']=1;
+    break;
+    case"re_skill":
+        $data['class']=$_POST['class'];
         $data['sh']=1;
     break;
     default:

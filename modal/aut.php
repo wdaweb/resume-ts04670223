@@ -4,15 +4,16 @@
     <table>
         <tr>
             <td style="vertical-align: top;">自傳</td>
-            <td><textarea name="text" style="width: 300px;height:200px;"></textarea></td>
+            <td><textarea class="form-control" name="text" style="width: 300px;height:200px;"></textarea></td>
         </tr>
         <tr>
-            <td colspan="2">
-                <input type="hidden" name="table" value="<?= $_GET['table']; ?>">
-                <input type="submit" value="新增">
-                <input type="reset" value="重置">
+            <td>
+                <input class="btn btn-primary" type="submit" value="新增">
             </td>
-
+            <td>
+                <input class="btn btn-primary" type="reset" value="重置">
+            </td>
+            <input type="hidden" name="table" value="<?= $_GET['table']; ?>">
         </tr>
     </table>
 

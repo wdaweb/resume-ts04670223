@@ -32,6 +32,18 @@
                       <div class="ripple-container"></div>
                     </a>
                   </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#menu" data-toggle="tab">
+                      <i class="material-icons">cloud</i> 選單
+                      <div class="ripple-container"></div>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#skill" data-toggle="tab">
+                      <i class="material-icons">cloud</i> 技能
+                      <div class="ripple-container"></div>
+                    </a>
+                  </li>
                 </ul>
               </div>
             </div>
@@ -63,11 +75,11 @@
                               </label>
                             </div>
                           </td>
-                          <td><textarea name="text[]" rows="5" style="width: 95%;height:150px"><?= $row['text']; ?></textarea></td>
+                          <td><textarea class="form-control" name="text[]" rows="5" style="width: 95%;height:150px"><?= $row['text']; ?></textarea></td>
                           <input type="hidden" name="id[]" value="<?= $row['id']; ?>">
-                          <input type="hidden" name="table" value="aut">
+                          <input type="hidden" name="table" value="re_aut">
                           <td class="td-actions text-right">
-                            <button type="submit" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm">
+                            <button type="submit" rel="tooltip" title="Edit" class="btn btn-primary btn-link btn-sm">
                               <i class="material-icons">edit</i>
                             </button>
                             <button type="submit" name="del[]" value="<?= $row['id']; ?>" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
@@ -80,7 +92,12 @@
                       }
                       ?>
                       <tr>
-                        <td width="200px"><input class="btn btn-primary btn-block" type="button" onclick="op('#cover','#cvr','./modal/aut.php?table=aut')" value="新增"></td>
+                        <td width="200px"><input class="btn btn-primary btn-block" type="button" onclick="op('#cover','#cvr','./modal/aut.php?table=re_aut')" value="新增"></td>
+                        <td>
+                          <button type="submit" rel="tooltip" title="All Edit" class="btn btn-primary btn-link btn-sm">
+                            <i class="material-icons">edit</i>
+                          </button>
+                        </td>
                       </tr>
                     </tbody>
                   </table>
@@ -92,6 +109,7 @@
                     <thead class="text-primary">
                       <th>顯示</th>
                       <th>學校</th>
+                      <th>簡介</th>
                       <th>編輯</th>
                     </thead>
                     <tbody>
@@ -111,11 +129,12 @@
                               </label>
                             </div>
                           </td>
-                          <td><input type="text" name="text[]" value="<?= $row['text']; ?>" style="width:50%"></td>
+                          <td><input class="form-control" type="text" name="text[]" value="<?= $row['text']; ?>" style="width:50%"></td>
+                          <td><input class="form-control" type="text" name="text[]2" value="<?= $row['text2']; ?>" style="width:50%"></td>
                           <input type="hidden" name="id[]" value="<?= $row['id']; ?>">
-                          <input type="hidden" name="table" value="education">
+                          <input type="hidden" name="table" value="re_education">
                           <td class="td-actions text-right">
-                            <button type="submit" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm">
+                            <button type="submit" rel="tooltip" title="Edit" class="btn btn-primary btn-link btn-sm">
                               <i class="material-icons">edit</i>
                             </button>
                             <button type="submit" name="del[]" value="<?= $row['id']; ?>" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
@@ -127,7 +146,12 @@
                       }
                       ?>
                       <tr>
-                        <td width="200px"><input class="btn btn-primary btn-block" type="button" onclick="op('#cover','#cvr','./modal/edu.php?table=education')" value="新增"></td>
+                        <td width="200px"><input class="btn btn-primary btn-block" type="button" onclick="op('#cover','#cvr','./modal/edu.php?table=re_education')" value="新增"></td>
+                        <td>
+                          <button type="submit" rel="tooltip" title="All Edit" class="btn btn-primary btn-link btn-sm">
+                            <i class="material-icons">edit</i>
+                          </button>
+                        </td>
                       </tr>
                     </tbody>
                   </table>
@@ -139,6 +163,7 @@
                     <thead class="text-primary">
                       <th>顯示</th>
                       <th>公司</th>
+                      <th>簡介</th>
                       <th>編輯</th>
                     </thead>
                     <tbody>
@@ -158,11 +183,12 @@
                               </label>
                             </div>
                           </td>
-                          <td><input type="text" name="text[]" value="<?= $row['text']; ?>" style="width:50%"></td>
+                          <td><input class="form-control" type="text" name="text[]" value="<?= $row['text']; ?>" style="width:50%"></td>
+                          <td><input class="form-control" type="text" name="text2[]" value="<?= $row['text2']; ?>" style="width:50%"></td>
                           <input type="hidden" name="id[]" value="<?= $row['id']; ?>">
-                          <input type="hidden" name="table" value="experience">
+                          <input type="hidden" name="table" value="re_experience">
                           <td class="td-actions text-right">
-                            <button type="submit" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm">
+                            <button type="submit" rel="tooltip" title="Edit" class="btn btn-primary btn-link btn-sm">
                               <i class="material-icons">edit</i>
                             </button>
                             <button type="submit" name="del[]" value="<?= $row['id']; ?>" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
@@ -174,7 +200,12 @@
                       }
                       ?>
                       <tr>
-                        <td width="200px"><input class="btn btn-primary btn-block" type="button" onclick="op('#cover','#cvr','./modal/ex.php?table=experience')" value="新增"></td>
+                        <td width="200px"><input class="btn btn-primary btn-block" type="button" onclick="op('#cover','#cvr','./modal/ex.php?table=re_experience')" value="新增"></td>
+                        <td>
+                          <button type="submit" rel="tooltip" title="All Edit" class="btn btn-primary btn-link btn-sm">
+                            <i class="material-icons">edit</i>
+                          </button>
+                        </td>
                       </tr>
                     </tbody>
                   </table>
@@ -208,20 +239,20 @@
                             </div>
                           </td>
                           <td><img src="./front/img/portfolio/<?= $row['img']; ?>" style="width:100px;height:100px"></td>
-                          <td><input type="text" name="text[]" value="<?= $row['text']; ?>" style="width:50%"></td>
+                          <td><input class="form-control" type="text" name="text[]" value="<?= $row['text']; ?>" style="width:50%"></td>
                           <td>
-                            <select>
-                              <option name="class[]" value="<?= $row['class']; ?>"><?= $row['class']; ?></option>
-                              <option name="class[]" value="<?= $row['class']; ?>"><?= $row['class']; ?></option>
-                              <option name="class[]" value="<?= $row['class']; ?>"><?= $row['class']; ?></option>
+                            <select name="class[]">
+                              <option value="1" <?= ($row['class'] == 1) ? "selected" : ''; ?>>前端</option>
+                              <option value="2" <?= ($row['class'] == 2) ? "selected" : ''; ?>>後端</option>
+                              <option value="3" <?= ($row['class'] == 3) ? "selected" : ''; ?>>其他</option>
                             </select>
                             <!-- <input type="text" name="class[]" value="" style="width:50%"> -->
                           </td>
-                          <td><input type="text" name="text2[]" value="<?= $row['text2']; ?>" style="width:50%"></td>
+                          <td><input class="form-control" type="text" name="text2[]" value="<?= $row['text2']; ?>" style="width:50%"></td>
                           <input type="hidden" name="id[]" value="<?= $row['id']; ?>">
-                          <input type="hidden" name="table" value="port">
+                          <input type="hidden" name="table" value="re_port">
                           <td class="td-actions text-right">
-                            <button type="submit" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm">
+                            <button type="submit" rel="tooltip" title="Edit" class="btn btn-primary btn-link btn-sm">
                               <i class="material-icons">edit</i>
                             </button>
                             <button type="submit" name="del[]" value="<?= $row['id']; ?>" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
@@ -233,13 +264,132 @@
                       }
                       ?>
                       <tr>
+                        <td width="200px">
+                          <input class="btn btn-primary btn-block" type="button" onclick="op('#cover','#cvr','./modal/port.php?table=re_port')" value="新增">
+                        </td>
                         <td>
-                          <button type="submit" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm">
+                          <button type="submit" rel="tooltip" title="All Edit" class="btn btn-primary btn-link btn-sm">
                             <i class="material-icons">edit</i>
                           </button>
                         </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </form>
+              </div>
+              <div class="tab-pane" id="menu">
+                <form method="post" action="./api/edit.php">
+                  <table class="table">
+                    <thead class="text-primary">
+                      <th>顯示</th>
+                      <th>內容</th>
+                      <th>連結</th>
+                      <th>編輯</th>
+                    </thead>
+                    <tbody>
+                      <?php
+
+                      $menu = $Menu->all();
+                      foreach ($menu as $row) {
+                      ?>
+                        <tr>
+                          <td>
+                            <div class="form-check">
+                              <label class="form-check-label">
+                                <input class="form-check-input" type="checkbox" name="sh[]" value="<?= $row['id']; ?>" <?= ($row['sh'] == 1) ? 'checked' : ''; ?>>
+                                <span class="form-check-sign">
+                                  <span class="check"></span>
+                                </span>
+                              </label>
+                            </div>
+                          </td>
+                          <td><input class="form-control" type="text" name="text[]" value="<?= $row['text']; ?>"></td>
+                          <td><input class="form-control" type="text" name="href[]" value="<?= $row['href']; ?>"></td>
+                          <input type="hidden" name="id[]" value="<?= $row['id']; ?>">
+                          <input type="hidden" name="table" value="re_menu">
+                          <td class="td-actions text-right">
+                            <button type="submit" rel="tooltip" title="Edit" class="btn btn-primary btn-link btn-sm">
+                              <i class="material-icons">edit</i>
+                            </button>
+                            <button type="submit" name="del[]" value="<?= $row['id']; ?>" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
+                              <i class="material-icons">close</i>
+                            </button>
+                          </td>
+                        </tr>
+
+                      <?php
+                      }
+                      ?>
+                      <tr>
+                        <td width="200px"><input class="btn btn-primary btn-block" type="button" onclick="op('#cover','#cvr','./modal/menu.php?table=re_menu')" value="新增"></td>
+                        <td>
+                          <button type="submit" rel="tooltip" title="All Edit" class="btn btn-primary btn-link btn-sm">
+                            <i class="material-icons">edit</i>
+                          </button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </form>
+              </div>
+              <div class="tab-pane" id="skill">
+                <form method="post" action="./api/edit.php">
+                  <table class="table">
+                    <thead class="text-primary">
+                      <th>顯示</th>
+                      <th>技能圖片</th>
+                      <th>技能主題</th>
+                      <th>技能分類</th>
+                      <th>編輯</th>
+                    </thead>
+                    <tbody>
+                      <?php
+                      $skill = $Skill->all();
+                      foreach ($skill as $row) {
+                      ?>
+                        <tr>
+                          <td>
+                            <div class="form-check">
+                              <label class="form-check-label">
+                                <input class="form-check-input" type="checkbox" name="sh[]" value="<?= $row['id']; ?>" <?= ($row['sh'] == 1) ? 'checked' : ''; ?>>
+                                <span class="form-check-sign">
+                                  <span class="check"></span>
+                                </span>
+                              </label>
+                            </div>
+                          </td>
+                          <td><img src="./front/img/portfolio/<?= $row['img']; ?>" style="width:100px;height:100px"></td>
+                          <td><input class="form-control" type="text" name="text[]" value="<?= $row['text']; ?>" style="width:50%"></td>
+                          <td>
+                            <select name="class[]">
+                              <option value="1" <?= ($row['class'] == 1) ? "selected" : ''; ?>>前端</option>
+                              <option value="2" <?= ($row['class'] == 2) ? "selected" : ''; ?>>後端</option>
+                              <option value="3" <?= ($row['class'] == 3) ? "selected" : ''; ?>>其他</option>
+                            </select>
+                            <!-- <input type="text" name="class[]" value="" style="width:50%"> -->
+                          </td>
+                          <input type="hidden" name="id[]" value="<?= $row['id']; ?>">
+                          <input type="hidden" name="table" value="re_skill">
+                          <td class="td-actions text-right">
+                            <button type="submit" rel="tooltip" title="Edit" class="btn btn-primary btn-link btn-sm">
+                              <i class="material-icons">edit</i>
+                            </button>
+                            <button type="submit" name="del[]" value="<?= $row['id']; ?>" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
+                              <i class="material-icons">close</i>
+                            </button>
+                          </td>
+                        </tr>
+                      <?php
+                      }
+                      ?>
+                      <tr>
                         <td width="200px">
-                          <input class="btn btn-primary btn-block" type="button" onclick="op('#cover','#cvr','./modal/port.php?table=port')" value="新增">
+                          <input class="btn btn-primary btn-block" type="button" onclick="op('#cover','#cvr','./modal/skill.php?table=re_skill')" value="新增">
+                        </td>
+                        <td>
+                          <button type="submit" rel="tooltip" title="All Edit" class="btn btn-primary btn-link btn-sm">
+                            <i class="material-icons">edit</i>
+                          </button>
                         </td>
                       </tr>
                     </tbody>

@@ -17,8 +17,8 @@ $subs=$Education->all(['parent'=>$_GET['id']]);
 
             ?>
         <tr>
-            <td><input type="text" name="text[]" value="<?=$sub['text'];?>"></td>
-            <td><input type="checkbox" name="del[]" value="<?=$sub['id'];?>"></td>
+            <td><input class="form-control" type="text" name="text[]" value="<?=$sub['text'];?>"></td>
+            <td><input class="form-check-input" type="checkbox" name="del[]" value="<?=$sub['id'];?>"></td>
             <input type="hidden" name="id[]" value="<?=$sub['id'];?>">
         </tr>
         <?php

@@ -42,6 +42,13 @@ The above copyright notice and this permission notice shall be included in all c
 
 <body class="">
   <div class="wrapper ">
+  <div id="cover" style="display:none; ">
+        <div id="coverr">
+            <a class="btn btn-danger btn-link btn-sm" style="position:absolute; right:3px; top:4px; cursor:pointer; z-index:9999;"
+                onclick="cl('#cover')"><i class="material-icons">close</i></a>
+            <div id="cvr" style="position:absolute; width:99%; height:100%; margin:auto; z-index:9898;"></div>
+        </div>
+    </div>
     <div class="sidebar" data-color="purple" data-background-color="white" data-image="assets/img/sidebar-1.jpg">
       <!--
         Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
