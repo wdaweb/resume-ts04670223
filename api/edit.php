@@ -16,9 +16,12 @@ foreach ($_POST['id'] as $key => $id) {
             case "title":
                 $row['sh'] = ($id == $_POST['sh']) ? 1 : 0;
                 break;
+            case "port":
+                $row['text2'] = $_POST['text2'][$key];
+                $row['sh'] = in_array($id, $_POST['sh']) ? 1 : 0;
+                break;
             case "ad":
             case "mvim":
-            case "port":
             case "image":
             case "aut":
             case "education":
@@ -34,12 +37,11 @@ foreach ($_POST['id'] as $key => $id) {
             case "admin":
                 $row['acc'] = $_POST['acc'][$key];
                 $row['pw'] = $_POST['pw'][$key];
-            break;
+                break;
             case "menu":
                 $row['href'] = $_POST['href'][$key];
                 $row['sh'] = in_array($id, $_POST['sh']) ? 1 : 0;
-            break;
-
+                break;
         }
         if (!empty($_POST['text'])) {
             $row['text'] = $_POST['text'][$key];
@@ -47,4 +49,4 @@ foreach ($_POST['id'] as $key => $id) {
         $db->save($row);
     }
 }
-to("../backend.php?do=$table");  
+to("../backend.php?do=$table");

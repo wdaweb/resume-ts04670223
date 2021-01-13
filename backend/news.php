@@ -188,6 +188,7 @@
                       <th>作品圖片</th>
                       <th>作品主題</th>
                       <th>作品分類</th>
+                      <th>作品簡介</th>
                       <th>編輯</th>
                     </thead>
                     <tbody>
@@ -208,9 +209,17 @@
                           </td>
                           <td><img src="./front/img/portfolio/<?= $row['img']; ?>" style="width:100px;height:100px"></td>
                           <td><input type="text" name="text[]" value="<?= $row['text']; ?>" style="width:50%"></td>
+                          <td>
+                            <select>
+                              <option name="class[]" value="<?= $row['class']; ?>"><?= $row['class']; ?></option>
+                              <option name="class[]" value="<?= $row['class']; ?>"><?= $row['class']; ?></option>
+                              <option name="class[]" value="<?= $row['class']; ?>"><?= $row['class']; ?></option>
+                            </select>
+                            <!-- <input type="text" name="class[]" value="" style="width:50%"> -->
+                          </td>
+                          <td><input type="text" name="text2[]" value="<?= $row['text2']; ?>" style="width:50%"></td>
                           <input type="hidden" name="id[]" value="<?= $row['id']; ?>">
                           <input type="hidden" name="table" value="port">
-                          <td></td>
                           <td class="td-actions text-right">
                             <button type="submit" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm">
                               <i class="material-icons">edit</i>
@@ -224,7 +233,14 @@
                       }
                       ?>
                       <tr>
-                        <td width="200px"><input class="btn btn-primary btn-block" type="button" onclick="op('#cover','#cvr','./modal/port.php?table=port')" value="新增"></td>
+                        <td>
+                          <button type="submit" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm">
+                            <i class="material-icons">edit</i>
+                          </button>
+                        </td>
+                        <td width="200px">
+                          <input class="btn btn-primary btn-block" type="button" onclick="op('#cover','#cvr','./modal/port.php?table=port')" value="新增">
+                        </td>
                       </tr>
                     </tbody>
                   </table>
