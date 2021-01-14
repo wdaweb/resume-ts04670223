@@ -110,34 +110,51 @@
                       <th>顯示</th>
                       <th>學校</th>
                       <th>簡介</th>
+                      <th>排序</th>
                       <th>編輯</th>
                     </thead>
                     <tbody>
                       <?php
-                      $Edu = $Education->all();
+                      $Edu = $Education->all(' order by `rank` ');
 
-                      foreach ($Edu as $row) {
+                      foreach ($Edu as $key => $poster) {
                       ?>
                         <tr>
                           <td>
                             <div class="form-check">
                               <label class="form-check-label">
-                                <input class="form-check-input" type="checkbox" name="sh[]" value="<?= $row['id']; ?>" <?= ($row['sh'] == 1) ? 'checked' : ''; ?>>
+                                <input class="form-check-input" type="checkbox" name="sh[]" value="<?= $poster['id']; ?>" <?= ($poster['sh'] == 1) ? 'checked' : ''; ?>>
                                 <span class="form-check-sign">
                                   <span class="check"></span>
                                 </span>
                               </label>
                             </div>
                           </td>
-                          <td><input class="form-control" type="text" name="text[]" value="<?= $row['text']; ?>" style="width:50%"></td>
-                          <td><input class="form-control" type="text" name="text[]2" value="<?= $row['text2']; ?>" style="width:50%"></td>
-                          <input type="hidden" name="id[]" value="<?= $row['id']; ?>">
+                          <td><input class="form-control" type="text" name="text[]" value="<?= $poster['text']; ?>" style="width:50%"></td>
+                          <td><input class="form-control" type="text" name="text2[]" value="<?= $poster['text2']; ?>" style="width:50%"></td>
+                          <td>
+                            <?php
+                            if ($key != 0) {
+                            ?>
+                              <input class="btn btn-primary" type="button" value="往上" onclick="sw('re_education',<?= $poster['id']; ?>,<?= $Edu[$key - 1]['id']; ?>)">
+                            <?php
+                            }
+                            ?>
+                            <?php
+                            if ($key != (count($Edu) - 1)) {
+                            ?>
+                              <input class="btn btn-primary" type="button" value="往下" onclick="sw('re_education',<?= $poster['id']; ?>,<?= $Edu[$key + 1]['id']; ?>)">
+                            <?php
+                            }
+                            ?>
+                          </td>
+                          <input type="hidden" name="id[]" value="<?= $poster['id']; ?>">
                           <input type="hidden" name="table" value="re_education">
                           <td class="td-actions text-right">
                             <button type="submit" rel="tooltip" title="Edit" class="btn btn-primary btn-link btn-sm">
                               <i class="material-icons">edit</i>
                             </button>
-                            <button type="submit" name="del[]" value="<?= $row['id']; ?>" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
+                            <button type="submit" name="del[]" value="<?= $poster['id']; ?>" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
                               <i class="material-icons">close</i>
                             </button>
                           </td>
@@ -164,34 +181,51 @@
                       <th>顯示</th>
                       <th>公司</th>
                       <th>簡介</th>
+                      <th>排序</th>
                       <th>編輯</th>
                     </thead>
                     <tbody>
                       <?php
-                      $Ex = $Experience->all();
+                      $Ex = $Experience->all(' order by `rank` ');
 
-                      foreach ($Ex as $row) {
+                      foreach ($Ex as $key => $poster) {
                       ?>
                         <tr>
                           <td>
                             <div class="form-check">
                               <label class="form-check-label">
-                                <input class="form-check-input" type="checkbox" name="sh[]" value="<?= $row['id']; ?>" <?= ($row['sh'] == 1) ? 'checked' : ''; ?>>
+                                <input class="form-check-input" type="checkbox" name="sh[]" value="<?= $poster['id']; ?>" <?= ($poster['sh'] == 1) ? 'checked' : ''; ?>>
                                 <span class="form-check-sign">
                                   <span class="check"></span>
                                 </span>
                               </label>
                             </div>
                           </td>
-                          <td><input class="form-control" type="text" name="text[]" value="<?= $row['text']; ?>" style="width:50%"></td>
-                          <td><input class="form-control" type="text" name="text2[]" value="<?= $row['text2']; ?>" style="width:50%"></td>
-                          <input type="hidden" name="id[]" value="<?= $row['id']; ?>">
+                          <td><input class="form-control" type="text" name="text[]" value="<?= $poster['text']; ?>" style="width:50%"></td>
+                          <td><input class="form-control" type="text" name="text2[]" value="<?= $poster['text2']; ?>" style="width:50%"></td>
+                          <td>
+                            <?php
+                            if ($key != 0) {
+                            ?>
+                              <input class="btn btn-primary" type="button" value="往上" onclick="sw('re_experience',<?= $poster['id']; ?>,<?= $Ex[$key - 1]['id']; ?>)">
+                            <?php
+                            }
+                            ?>
+                            <?php
+                            if ($key != (count($Ex) - 1)) {
+                            ?>
+                              <input class="btn btn-primary" type="button" value="往下" onclick="sw('re_experience',<?= $poster['id']; ?>,<?= $Ex[$key + 1]['id']; ?>)">
+                            <?php
+                            }
+                            ?>
+                          </td>
+                          <input type="hidden" name="id[]" value="<?= $poster['id']; ?>">
                           <input type="hidden" name="table" value="re_experience">
                           <td class="td-actions text-right">
                             <button type="submit" rel="tooltip" title="Edit" class="btn btn-primary btn-link btn-sm">
                               <i class="material-icons">edit</i>
                             </button>
-                            <button type="submit" name="del[]" value="<?= $row['id']; ?>" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
+                            <button type="submit" name="del[]" value="<?= $poster['id']; ?>" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
                               <i class="material-icons">close</i>
                             </button>
                           </td>
@@ -220,42 +254,59 @@
                       <th>作品主題</th>
                       <th>作品分類</th>
                       <th>作品簡介</th>
+                      <th>排序</th>
                       <th>編輯</th>
                     </thead>
                     <tbody>
                       <?php
-                      $po = $Port->all();
-                      foreach ($po as $row) {
+                      $po = $Port->all(' order by `rank` ');
+                      foreach ($po as $key => $poster) {
                       ?>
                         <tr>
                           <td>
                             <div class="form-check">
                               <label class="form-check-label">
-                                <input class="form-check-input" type="checkbox" name="sh[]" value="<?= $row['id']; ?>" <?= ($row['sh'] == 1) ? 'checked' : ''; ?>>
+                                <input class="form-check-input" type="checkbox" name="sh[]" value="<?= $poster['id']; ?>" <?= ($poster['sh'] == 1) ? 'checked' : ''; ?>>
                                 <span class="form-check-sign">
                                   <span class="check"></span>
                                 </span>
                               </label>
                             </div>
                           </td>
-                          <td><img src="./front/img/portfolio/<?= $row['img']; ?>" style="width:100px;height:100px"></td>
-                          <td><input class="form-control" type="text" name="text[]" value="<?= $row['text']; ?>" style="width:50%"></td>
+                          <td><img src="./front/img/portfolio/<?= $poster['img']; ?>" style="width:100px;height:100px"></td>
+                          <td><input class="form-control" type="text" name="text[]" value="<?= $poster['text']; ?>" style="width:50%"></td>
                           <td>
                             <select name="class[]">
-                              <option value="1" <?= ($row['class'] == 1) ? "selected" : ''; ?>>前端</option>
-                              <option value="2" <?= ($row['class'] == 2) ? "selected" : ''; ?>>後端</option>
-                              <option value="3" <?= ($row['class'] == 3) ? "selected" : ''; ?>>其他</option>
+                              <option value="1" <?= ($poster['class'] == 1) ? "selected" : ''; ?>>前端</option>
+                              <option value="2" <?= ($poster['class'] == 2) ? "selected" : ''; ?>>後端</option>
+                              <option value="3" <?= ($poster['class'] == 3) ? "selected" : ''; ?>>其他</option>
                             </select>
                             <!-- <input type="text" name="class[]" value="" style="width:50%"> -->
                           </td>
-                          <td><input class="form-control" type="text" name="text2[]" value="<?= $row['text2']; ?>" style="width:50%"></td>
-                          <input type="hidden" name="id[]" value="<?= $row['id']; ?>">
+                          <td><input class="form-control" type="text" name="text2[]" value="<?= $poster['text2']; ?>" style="width:50%"></td>
+                          <td>
+                            <?php
+                            if ($key != 0) {
+                            ?>
+                              <input class="btn btn-primary" type="button" value="往上" onclick="sw('re_port',<?= $poster['id']; ?>,<?= $po[$key - 1]['id']; ?>)">
+                            <?php
+                            }
+                            ?>
+                            <?php
+                            if ($key != (count($po) - 1)) {
+                            ?>
+                              <input class="btn btn-primary" type="button" value="往下" onclick="sw('re_port',<?= $poster['id']; ?>,<?= $po[$key + 1]['id']; ?>)">
+                            <?php
+                            }
+                            ?>
+                          </td>
+                          <input type="hidden" name="id[]" value="<?= $poster['id']; ?>">
                           <input type="hidden" name="table" value="re_port">
                           <td class="td-actions text-right">
                             <button type="submit" rel="tooltip" title="Edit" class="btn btn-primary btn-link btn-sm">
                               <i class="material-icons">edit</i>
                             </button>
-                            <button type="submit" name="del[]" value="<?= $row['id']; ?>" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
+                            <button type="submit" name="del[]" value="<?= $poster['id']; ?>" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
                               <i class="material-icons">close</i>
                             </button>
                           </td>
@@ -284,34 +335,51 @@
                       <th>顯示</th>
                       <th>內容</th>
                       <th>連結</th>
+                      <th>排序</th>
                       <th>編輯</th>
                     </thead>
                     <tbody>
                       <?php
 
-                      $menu = $Menu->all();
-                      foreach ($menu as $row) {
+                      $menu = $Menu->all(' order by `rank` ');
+                      foreach ($menu as $key => $poster) {
                       ?>
                         <tr>
                           <td>
                             <div class="form-check">
                               <label class="form-check-label">
-                                <input class="form-check-input" type="checkbox" name="sh[]" value="<?= $row['id']; ?>" <?= ($row['sh'] == 1) ? 'checked' : ''; ?>>
+                                <input class="form-check-input" type="checkbox" name="sh[]" value="<?= $poster['id']; ?>" <?= ($poster['sh'] == 1) ? 'checked' : ''; ?>>
                                 <span class="form-check-sign">
                                   <span class="check"></span>
                                 </span>
                               </label>
                             </div>
                           </td>
-                          <td><input class="form-control" type="text" name="text[]" value="<?= $row['text']; ?>"></td>
-                          <td><input class="form-control" type="text" name="href[]" value="<?= $row['href']; ?>"></td>
-                          <input type="hidden" name="id[]" value="<?= $row['id']; ?>">
+                          <td><input class="form-control" type="text" name="text[]" value="<?= $poster['text']; ?>"></td>
+                          <td><input class="form-control" type="text" name="href[]" value="<?= $poster['href']; ?>"></td>
+                          <td>
+                            <?php
+                            if ($key != 0) {
+                            ?>
+                              <input class="btn btn-primary" type="button" value="往上" onclick="sw('re_menu',<?= $poster['id']; ?>,<?= $menu[$key - 1]['id']; ?>)">
+                            <?php
+                            }
+                            ?>
+                            <?php
+                            if ($key != (count($menu) - 1)) {
+                            ?>
+                              <input class="btn btn-primary" type="button" value="往下" onclick="sw('re_menu',<?= $poster['id']; ?>,<?= $menu[$key + 1]['id']; ?>)">
+                            <?php
+                            }
+                            ?>
+                          </td>
+                          <input type="hidden" name="id[]" value="<?= $poster['id']; ?>">
                           <input type="hidden" name="table" value="re_menu">
                           <td class="td-actions text-right">
                             <button type="submit" rel="tooltip" title="Edit" class="btn btn-primary btn-link btn-sm">
                               <i class="material-icons">edit</i>
                             </button>
-                            <button type="submit" name="del[]" value="<?= $row['id']; ?>" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
+                            <button type="submit" name="del[]" value="<?= $poster['id']; ?>" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
                               <i class="material-icons">close</i>
                             </button>
                           </td>
@@ -340,41 +408,58 @@
                       <th>技能圖片</th>
                       <th>技能主題</th>
                       <th>技能分類</th>
+                      <th>排序</th>
                       <th>編輯</th>
                     </thead>
                     <tbody>
                       <?php
-                      $skill = $Skill->all();
-                      foreach ($skill as $row) {
+                      $skill = $Skill->all(' order by `rank` ');
+                      foreach ($skill as $key => $poster) {
                       ?>
                         <tr>
                           <td>
                             <div class="form-check">
                               <label class="form-check-label">
-                                <input class="form-check-input" type="checkbox" name="sh[]" value="<?= $row['id']; ?>" <?= ($row['sh'] == 1) ? 'checked' : ''; ?>>
+                                <input class="form-check-input" type="checkbox" name="sh[]" value="<?= $poster['id']; ?>" <?= ($poster['sh'] == 1) ? 'checked' : ''; ?>>
                                 <span class="form-check-sign">
                                   <span class="check"></span>
                                 </span>
                               </label>
                             </div>
                           </td>
-                          <td><img src="./front/img/portfolio/<?= $row['img']; ?>" style="width:100px;height:100px"></td>
-                          <td><input class="form-control" type="text" name="text[]" value="<?= $row['text']; ?>" style="width:50%"></td>
+                          <td><img src="./front/img/portfolio/<?= $poster['img']; ?>" style="width:100px;height:100px"></td>
+                          <td><input class="form-control" type="text" name="text[]" value="<?= $poster['text']; ?>" style="width:50%"></td>
                           <td>
                             <select name="class[]">
-                              <option value="1" <?= ($row['class'] == 1) ? "selected" : ''; ?>>前端</option>
-                              <option value="2" <?= ($row['class'] == 2) ? "selected" : ''; ?>>後端</option>
-                              <option value="3" <?= ($row['class'] == 3) ? "selected" : ''; ?>>其他</option>
+                              <option value="1" <?= ($poster['class'] == 1) ? "selected" : ''; ?>>前端</option>
+                              <option value="2" <?= ($poster['class'] == 2) ? "selected" : ''; ?>>後端</option>
+                              <option value="3" <?= ($poster['class'] == 3) ? "selected" : ''; ?>>其他</option>
                             </select>
                             <!-- <input type="text" name="class[]" value="" style="width:50%"> -->
                           </td>
-                          <input type="hidden" name="id[]" value="<?= $row['id']; ?>">
+                          <td>
+                            <?php
+                            if ($key != 0) {
+                            ?>
+                              <input class="btn btn-primary" type="button" value="往上" onclick="sw('re_skill',<?= $poster['id']; ?>,<?= $skill[$key - 1]['id']; ?>)">
+                            <?php
+                            }
+                            ?>
+                            <?php
+                            if ($key != (count($skill) - 1)) {
+                            ?>
+                              <input class="btn btn-primary" type="button" value="往下" onclick="sw('re_skill',<?= $poster['id']; ?>,<?= $skill[$key + 1]['id']; ?>)">
+                            <?php
+                            }
+                            ?>
+                          </td>
+                          <input type="hidden" name="id[]" value="<?= $poster['id']; ?>">
                           <input type="hidden" name="table" value="re_skill">
                           <td class="td-actions text-right">
                             <button type="submit" rel="tooltip" title="Edit" class="btn btn-primary btn-link btn-sm">
                               <i class="material-icons">edit</i>
                             </button>
-                            <button type="submit" name="del[]" value="<?= $row['id']; ?>" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
+                            <button type="submit" name="del[]" value="<?= $poster['id']; ?>" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
                               <i class="material-icons">close</i>
                             </button>
                           </td>

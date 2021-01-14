@@ -23,7 +23,7 @@ The above copyright notice and this permission notice shall be included in all c
 <head>
   <meta charset="utf-8" />
   <link rel="apple-touch-icon" sizes="76x76" href="assets/img/apple-icon.png">
-  <link rel="icon" type="image/png" href="assets/img/favicon.png">
+  <link href="front/img/favicon.ico" rel="icon">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>
     Material Dashboard by Creative Tim
@@ -60,13 +60,13 @@ The above copyright notice and this permission notice shall be included in all c
         </a></div>
       <div class="sidebar-wrapper">
         <ul class="nav">
-          <li class="nav-item" >
+          <li class="nav-item  <?=($_GET['do']=='news')? "active" : 'active'; ?>">
             <a class="nav-link" href="?do=news" >
               <i class="material-icons">dashboard</i>
               <p>履歷表</p>
             </a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item <?=($_GET['do']=='admin')? "active" : ''; ?>">
             <a class="nav-link" href="?do=admin" >
               <i class="material-icons">person</i>
               <p>編輯帳號</p>
@@ -439,6 +439,11 @@ The above copyright notice and this permission notice shall be included in all c
         });
       });
     });
+  function sw(table,idx,idy){
+    $.post("api/sw.php",{table,idx,idy},function(){
+    location.reload()
+    })
+  }
   </script>
 </body>
 

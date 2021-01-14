@@ -52,7 +52,7 @@
       <nav id="nav-menu-container">
         <ul class="nav-menu">
           <?php
-          $mainmu = $Menu->all(['sh' => 1]);
+          $mainmu = $Menu->all(['sh' => 1], 'order by rank');
           foreach ($mainmu as $main) {
           ?>
             <li><a href="<?= $main['href']; ?>"><?= $main['text']; ?></a></li>
@@ -128,18 +128,64 @@
     <section id="featured-services">
       <div class="container">
         <div class="row">
-
           <div class="col-lg-4 box">
             <i class="ion-ios-bookmarks-outline"></i>
             <h4 class="title"><a>前端</a></h4>
-            <p class="description"><i class="fab fa-html5"></i>Html</p>
-            <p class="description"><i class="fab fa-css3-alt"></i>Css</p>
-            <p class="description"><i class="fab fa-bootstrap"></i>Bootstrap</p>
-            <p class="description"><i class="fab fa-js"></i>JavaScript</p>
-            <p class="description"><span class="iconify" data-icon="bx:bxl-jquery" data-inline="false"></span>jquery</p>
-          </div>
+            <?php
+            $skill = $Skill->all(['sh' => 1], 'order by rank');
+            $cll = ['1' => '前端', "2" => "後端", '3' => "其他",];
+            foreach ($skill as $key => $poster) {
+            ?>
+              <?php
+              if ($poster['class'] == 1) {
 
-          <div class="col-lg-4 box box-bg">
+              ?>
+                <p class="description"><img style="width:30px;height:30px" src="front/img/portfolio/<?= $poster['img']; ?>"><?= $poster['text']; ?></p>
+
+              <?php
+              }
+            }
+              ?>
+          </div>
+          <div class="col-lg-4 box">
+            <i class="ion-ios-bookmarks-outline"></i>
+            <h4 class="title"><a>後端</a></h4>
+            <?php
+            $skill = $Skill->all(['sh' => 1], 'order by rank');
+            $cll = ['1' => '前端', "2" => "後端", '3' => "其他",];
+            foreach ($skill as $key => $poster) {
+            ?>
+              <?php
+              if ($poster['class'] == 2) {
+
+              ?>
+                <p class="description"><img style="width:30px;height:30px" src="front/img/portfolio/<?= $poster['img']; ?>"><?= $poster['text']; ?></p>
+
+              <?php
+              }
+            }
+              ?>
+          </div>
+          <div class="col-lg-4 box">
+            <i class="ion-ios-bookmarks-outline"></i>
+            <h4 class="title"><a>其他</a></h4>
+            <?php
+            $skill = $Skill->all(['sh' => 1], 'order by rank');
+            $cll = ['1' => '前端', "2" => "後端", '3' => "其他",];
+            foreach ($skill as $key => $poster) {
+            ?>
+              <?php
+              if ($poster['class'] == 3) {
+
+              ?>
+                <p class="description"><img style="width:30px;height:30px" src="front/img/portfolio/<?= $poster['img']; ?>"><?= $poster['text']; ?></p>
+
+              <?php
+              }
+            }
+              ?>
+          </div>
+          <!-- <div class="col-lg-4 box box-bg">
             <i class="ion-ios-stopwatch-outline"></i>
             <h4 class="title"><a>後端</a></h4>
             <p class="description"><i class="fab fa-php"></i>Php</p>
@@ -152,7 +198,7 @@
             <p class="description">illustrator</p>
             <p class="description">Github</p>
             <p class="description">Ajax</p>
-          </div>
+          </div> -->
 
         </div>
       </div>
@@ -168,7 +214,7 @@
           <h3>自傳</h3>
         </header>
         <?php
-        $n = $Aut->all(['sh' => 1]);
+        $n = $Aut->all(['sh' => 1], 'order by rank');
         foreach ($n as $key => $nn) {
           echo "<p>" . $nn['text'];
           echo "</p>";
@@ -190,14 +236,14 @@
 
         <div class="row">
           <?php
-          $education = $Education->all(['sh' => 1]);
+          $education = $Education->all(['sh' => 1], 'order by rank');
           foreach ($education as $main) {
 
           ?>
 
             <div class="col-lg-12 col-md-6 box wow bounceInUp" data-wow-duration="1.4s">
               <h4 class="title"><a><?= $main['text']; ?></a></h4>
-                  <p class="description"><?= $main['text2']; ?></p>
+              <p class="description"><?= $main['text2']; ?></p>
             </div>
           <?php }; ?>
         </div>
@@ -213,14 +259,14 @@
         <div class="row">
 
           <?php
-          $experience = $Experience->all(['sh' => 1]);
+          $experience = $Experience->all(['sh' => 1], 'order by rank');
           foreach ($experience as $main) {
 
           ?>
 
             <div class="col-lg-12 col-md-6 box wow bounceInUp" data-wow-duration="1.4s">
               <h4 class="title"><a><?= $main['text']; ?></a></h4>
-                  <p class="description"><?= $main['text2']; ?></p>
+              <p class="description"><?= $main['text2']; ?></p>
             </div>
           <?php }; ?>
 
@@ -253,27 +299,27 @@
         </div>
 
         <div class="row portfolio-container">
-<?php
-          $po = $Port->all(['sh' => 1]);
+          <?php
+          $po = $Port->all(['sh' => 1], 'order by rank');
           foreach ($po as $main) {
-?>
-          <div class="col-lg-4 col-md-6 portfolio-item filter-<?=$main['class'];?> wow fadeInUp">
-            <div class="portfolio-wrap">
-              <figure>
-                <img src="front/img/portfolio/<?=$main['img'];?>" class="img-fluid" alt="">
-                <a href="front/img/portfolio/<?=$main['img'];?>" data-lightbox="portfolio" data-title="App 1" class="link-preview" title="Preview"><i class="ion ion-eye"></i></a>
-                <a href="#" class="link-details" title="More Details"><i class="ion ion-android-open"></i></a>
-              </figure>
+          ?>
+            <div class="col-lg-4 col-md-6 portfolio-item filter-<?= $main['class']; ?> wow fadeInUp">
+              <div class="portfolio-wrap">
+                <figure>
+                  <img src="front/img/portfolio/<?= $main['img']; ?>" class="img-fluid" alt="">
+                  <a href="front/img/portfolio/<?= $main['img']; ?>" data-lightbox="portfolio" data-title="App 1" class="link-preview" title="Preview"><i class="ion ion-eye"></i></a>
+                  <a href="#" class="link-details" title="More Details"><i class="ion ion-android-open"></i></a>
+                </figure>
 
-              <div class="portfolio-info">
-                <h4><a href="#"><?=$main['text'];?></a></h4>
-                <p><?=$main['text2'];?></p>
+                <div class="portfolio-info">
+                  <h4><a href="#"><?= $main['text']; ?></a></h4>
+                  <p><?= $main['text2']; ?></p>
+                </div>
               </div>
             </div>
-          </div>
           <?php
           }
-?>
+          ?>
 
         </div>
 

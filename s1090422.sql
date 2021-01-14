@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： 127.0.0.1
--- 產生時間： 2021-01-13 16:08:19
+-- 產生時間： 2021-01-14 16:41:29
 -- 伺服器版本： 10.4.14-MariaDB
 -- PHP 版本： 7.4.10
 
@@ -377,16 +377,16 @@ INSERT INTO `re_admin` (`id`, `acc`, `pw`) VALUES
 CREATE TABLE `re_aut` (
   `id` int(11) UNSIGNED NOT NULL,
   `text` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `img` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `sh` int(1) NOT NULL
+  `sh` int(1) NOT NULL,
+  `rank` int(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- 傾印資料表的資料 `re_aut`
 --
 
-INSERT INTO `re_aut` (`id`, `text`, `img`, `sh`) VALUES
-(2, '我畢業於德明財經科技大學財務金融系，父母親教育採用民主制度，一切都用溝通來取代打罵，因此我對待他人也都以溝通為主，盡量不發生衝突，因此我們一家相當和睦。\r\n　　我最喜歡的一句話是史邁爾說的：「對微小事物的仔細觀察，就是事業、藝術、科學及生命各方面的成功秘訣。」這句話讓我在往後的人生都更注重小細節，因為這使我更加清楚每件事的重點，另外我喜歡有效率的做事情，會盡可能找出最省時省力的方法完成每一件事。', '', 1);
+INSERT INTO `re_aut` (`id`, `text`, `sh`, `rank`) VALUES
+(2, '我畢業於德明財經科技大學財務金融系，父母親教育採用民主制度，一切都用溝通來取代打罵，因此我對待他人也都以溝通為主，盡量不發生衝突，因此我們一家相當和睦。\r\n　　我最喜歡的一句話是史邁爾說的：「對微小事物的仔細觀察，就是事業、藝術、科學及生命各方面的成功秘訣。」這句話讓我在往後的人生都更注重小細節，因為這使我更加清楚每件事的重點，另外我喜歡有效率的做事情，會盡可能找出最省時省力的方法完成每一件事。', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -398,15 +398,18 @@ CREATE TABLE `re_education` (
   `id` int(11) UNSIGNED NOT NULL,
   `text` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `text2` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `sh` int(1) UNSIGNED NOT NULL
+  `sh` int(1) UNSIGNED NOT NULL,
+  `rank` int(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- 傾印資料表的資料 `re_education`
 --
 
-INSERT INTO `re_education` (`id`, `text`, `text2`, `sh`) VALUES
-(3, '德明財經科技大學', '財務金融系2016年~2020年', 1);
+INSERT INTO `re_education` (`id`, `text`, `text2`, `sh`, `rank`) VALUES
+(3, '德明財經科技大學', '財務金融系2016年~2020年', 1, 1),
+(7, 'fdfsdf', 'fdaffdsaf', 0, 2),
+(8, 'dsadasd', 'dasdasd', 0, 3);
 
 -- --------------------------------------------------------
 
@@ -418,15 +421,17 @@ CREATE TABLE `re_experience` (
   `id` int(11) UNSIGNED NOT NULL,
   `text` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `text2` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `sh` int(1) UNSIGNED NOT NULL
+  `sh` int(1) UNSIGNED NOT NULL,
+  `rank` int(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- 傾印資料表的資料 `re_experience`
 --
 
-INSERT INTO `re_experience` (`id`, `text`, `text2`, `sh`) VALUES
-(3, '水礦科技股份有限公司', '一般行政2019年~2020年', 1);
+INSERT INTO `re_experience` (`id`, `text`, `text2`, `sh`, `rank`) VALUES
+(3, '水礦科技股份有限公司', '一般行政2019年~2020年', 1, 1),
+(9, 'afdfsf', 'fadfdsf', 0, 2);
 
 -- --------------------------------------------------------
 
@@ -438,19 +443,20 @@ CREATE TABLE `re_menu` (
   `id` int(11) UNSIGNED NOT NULL,
   `text` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `href` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `sh` int(1) UNSIGNED NOT NULL
+  `sh` int(1) UNSIGNED NOT NULL,
+  `rank` int(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- 傾印資料表的資料 `re_menu`
 --
 
-INSERT INTO `re_menu` (`id`, `text`, `href`, `sh`) VALUES
-(3, '網站首頁', '#intro', 1),
-(18, '自傳', '#aut', 1),
-(32, '學歷', '#education', 1),
-(33, '經歷', '#experience', 1),
-(34, '作品集', '#portfolio', 1);
+INSERT INTO `re_menu` (`id`, `text`, `href`, `sh`, `rank`) VALUES
+(3, '網站首頁', '#intro', 1, 1),
+(18, '自傳', '#aut', 1, 2),
+(32, '學歷', '#education', 1, 3),
+(33, '經歷', '#experience', 1, 4),
+(34, '作品集', '#portfolio', 1, 5);
 
 -- --------------------------------------------------------
 
@@ -464,18 +470,21 @@ CREATE TABLE `re_port` (
   `img` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `sh` int(1) NOT NULL,
   `text2` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `class` text COLLATE utf8mb4_unicode_ci NOT NULL
+  `class` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `rank` int(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- 傾印資料表的資料 `re_port`
 --
 
-INSERT INTO `re_port` (`id`, `text`, `img`, `sh`, `text2`, `class`) VALUES
-(1, 'illustrator', 'ai1.jpg', 1, '女孩', '3'),
-(3, 'Photoshop', 'ps1.jpg', 1, '年曆', '3'),
-(4, 'Photoshop', 'ps2.jpg', 1, '酒標', '3'),
-(5, 'Photoshop', 'ps3.jpg', 1, '旅遊海報', '3');
+INSERT INTO `re_port` (`id`, `text`, `img`, `sh`, `text2`, `class`, `rank`) VALUES
+(1, 'illustrator', 'ai1.jpg', 1, '女孩', '3', 1),
+(3, 'Photoshop', 'ps1.jpg', 1, '年曆', '3', 2),
+(4, 'Photoshop', 'ps2.jpg', 1, '酒標', '3', 3),
+(5, 'Photoshop', 'ps3.jpg', 1, '旅遊海報', '3', 4),
+(24, 'asdaddad', 'd3.png', 1, 'dasd', '1', 5),
+(25, 'dadasd', 'd1.png', 1, 'asdasd', '1', 6);
 
 -- --------------------------------------------------------
 
@@ -487,8 +496,31 @@ CREATE TABLE `re_skill` (
   `id` int(11) UNSIGNED NOT NULL,
   `img` text NOT NULL,
   `text` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `class` text NOT NULL
+  `class` text NOT NULL,
+  `sh` int(1) NOT NULL,
+  `rank` int(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- 傾印資料表的資料 `re_skill`
+--
+
+INSERT INTO `re_skill` (`id`, `img`, `text`, `class`, `sh`, `rank`) VALUES
+(5, 'g1.png', 'photoshop', '3', 1, 1),
+(6, 'g2.png', 'Illustrator', '3', 1, 2),
+(7, 'mysql.png', 'MySql', '2', 1, 3),
+(8, 'w5.png', 'Bootstrap', '1', 1, 4),
+(9, 'w1.png', 'Html', '1', 1, 5),
+(10, 'w2.png', 'Css', '1', 1, 6),
+(11, 'w3.png', 'JavaScript', '1', 1, 7),
+(12, 'w4.png', 'jQuery', '1', 1, 8),
+(13, 'w8.png', 'Php', '2', 1, 9),
+(14, 'github (2).png', 'GitHub', '3', 1, 10),
+(15, 't3.png', 'Excel', '3', 1, 11),
+(16, 't2.png', 'Word', '3', 1, 12),
+(17, 't4.png', 'PowerPoint', '3', 1, 13),
+(18, 'w10.png', 'Xampp', '2', 1, 14),
+(19, 'w6.png', 'Ajax', '3', 1, 15);
 
 -- --------------------------------------------------------
 
@@ -753,13 +785,13 @@ ALTER TABLE `re_aut`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `re_education`
 --
 ALTER TABLE `re_education`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `re_experience`
 --
 ALTER TABLE `re_experience`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `re_menu`
@@ -771,13 +803,13 @@ ALTER TABLE `re_menu`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `re_port`
 --
 ALTER TABLE `re_port`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `re_skill`
 --
 ALTER TABLE `re_skill`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `title`

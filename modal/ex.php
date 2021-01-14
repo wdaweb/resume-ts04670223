@@ -3,8 +3,12 @@
 <form action="./api/add.php" method="post" enctype="multipart/form-data">
     <table>
         <tr>
-            <td style="vertical-align: top;">經歷</td>
-            <td><textarea name="text" style="width: 300px;height:200px;"></textarea></td>
+            <td style="vertical-align: top;">公司</td>
+            <td><textarea class="form-control" name="text" style="width: 300px;height:200px;"></textarea></td>
+        </tr>
+        <tr>
+            <td style="vertical-align: top;">介紹</td>
+            <td><textarea class="form-control" name="text2" style="width: 300px;height:200px;"></textarea></td>
         </tr>
         <tr>
             <td>

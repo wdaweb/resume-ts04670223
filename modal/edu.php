@@ -7,6 +7,10 @@
             <td><textarea class="form-control" name="text" style="width: 300px;height:200px;"></textarea></td>
         </tr>
         <tr>
+            <td style="vertical-align: top;">簡介</td>
+            <td><textarea class="form-control" name="text2" style="width: 300px;height:200px;"></textarea></td>
+        </tr>
+        <tr>
             <td>
                 <input class="btn btn-primary" type="submit" value="新增">
             </td>

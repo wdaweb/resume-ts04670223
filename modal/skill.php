@@ -13,7 +13,7 @@
         <tr>
             <td>技能分類:</td>
             <td>
-                <select name="class[]">
+                <select name="class">
                     <option value="1" >前端</option>
                     <option value="2" >後端</option>
                     <option value="3" >其他</option>
