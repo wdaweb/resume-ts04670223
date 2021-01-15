@@ -60,4 +60,4 @@ switch ($table) {
 
 $db->save($data);
 
-to("../backend.php?do=news");
+to("../backend.php?do=phto");

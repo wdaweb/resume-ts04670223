@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-lg-12 col-md-12">
         <div class="card">
-          <div class="card-header card-header-tabs card-header-primary">
+          <div class="card-header card-header-tabs card-header-warning">
             <div class="nav-tabs-navigation">
               <div class="nav-tabs-wrapper">
                 <span class="nav-tabs-title">履歷表:</span>
@@ -11,6 +11,18 @@
                   <li class="nav-item">
                     <a class="nav-link active" href="#profile" data-toggle="tab">
                       <i class="material-icons">bug_report</i>自傳
+                      <div class="ripple-container"></div>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#me" data-toggle="tab">
+                      <i class="material-icons">code</i>關於我
+                      <div class="ripple-container"></div>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link " href="#headshot" data-toggle="tab">
+                      <i class="material-icons">bug_report</i>大頭貼
                       <div class="ripple-container"></div>
                     </a>
                   </li>
@@ -44,6 +56,18 @@
                       <div class="ripple-container"></div>
                     </a>
                   </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#connection" data-toggle="tab">
+                      <i class="material-icons">cloud</i> 聯絡我
+                      <div class="ripple-container"></div>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#job" data-toggle="tab">
+                      <i class="material-icons">cloud</i> 求職條件
+                      <div class="ripple-container"></div>
+                    </a>
+                  </li>
                 </ul>
               </div>
             </div>
@@ -53,36 +77,53 @@
               <div class="tab-pane active" id="profile">
                 <form method="post" action="./api/edit.php">
                   <table class="table">
-                    <thead class="text-primary">
+                    <thead class="text-warning">
                       <th>顯示</th>
                       <th>自傳</th>
+                      <th>排序</th>
                       <th>編輯</th>
                     </thead>
                     <tbody>
                       <?php
 
-                      $rows = $Aut->all();
-                      foreach ($rows as $row) {
+                      $aut = $Aut->all(' order by `rank` ');
+                      foreach ($aut as $key => $poster) {
                       ?>
                         <tr>
                           <td>
                             <div class="form-check">
                               <label class="form-check-label">
-                                <input class="form-check-input" type="checkbox" name="sh[]" value="<?= $row['id']; ?>" <?= ($row['sh'] == 1) ? 'checked' : ''; ?>>
+                                <input class="form-check-input" type="checkbox" name="sh[]" value="<?= $poster['id']; ?>" <?= ($poster['sh'] == 1) ? 'checked' : ''; ?>>
                                 <span class="form-check-sign">
                                   <span class="check"></span>
                                 </span>
                               </label>
                             </div>
                           </td>
-                          <td><textarea class="form-control" name="text[]" rows="5" style="width: 95%;height:150px"><?= $row['text']; ?></textarea></td>
-                          <input type="hidden" name="id[]" value="<?= $row['id']; ?>">
+                          <td><textarea class="form-control" name="text[]" rows="5" style="width: 95%;height:150px"><?= $poster['text']; ?></textarea></td>
+                          <input type="hidden" name="id[]" value="<?= $poster['id']; ?>">
                           <input type="hidden" name="table" value="re_aut">
+                          <td>
+                            <?php
+                            if ($key != 0) {
+                            ?>
+                              <input class="btn btn-warning" type="button" value="往上" onclick="sw('re_aut',<?= $poster['id']; ?>,<?= $aut[$key - 1]['id']; ?>)">
+                            <?php
+                            }
+                            ?>
+                            <?php
+                            if ($key != (count($aut) - 1)) {
+                            ?>
+                              <input class="btn btn-warning" type="button" value="往下" onclick="sw('re_aut',<?= $poster['id']; ?>,<?= $aut[$key + 1]['id']; ?>)">
+                            <?php
+                            }
+                            ?>
+                          </td>
                           <td class="td-actions text-right">
-                            <button type="submit" rel="tooltip" title="Edit" class="btn btn-primary btn-link btn-sm">
+                            <button type="submit" rel="tooltip" title="Edit" class="btn btn-warning btn-link btn-sm">
                               <i class="material-icons">edit</i>
                             </button>
-                            <button type="submit" name="del[]" value="<?= $row['id']; ?>" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
+                            <button type="submit" name="del[]" value="<?= $poster['id']; ?>" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
                               <i class="material-icons">close</i>
                             </button>
                           </td>
@@ -92,9 +133,150 @@
                       }
                       ?>
                       <tr>
-                        <td width="200px"><input class="btn btn-primary btn-block" type="button" onclick="op('#cover','#cvr','./modal/aut.php?table=re_aut')" value="新增"></td>
+                        <td width="200px"><input class="btn btn-warning btn-block" type="button" onclick="op('#cover','#cvr','./modal/select.php')" value="新增"></td>
                         <td>
-                          <button type="submit" rel="tooltip" title="All Edit" class="btn btn-primary btn-link btn-sm">
+                          <button type="submit" rel="tooltip" title="All Edit" class="btn btn-warning btn-link btn-sm">
+                            <i class="material-icons">edit</i>
+                          </button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </form>
+              </div>
+              <div class="tab-pane" id="me">
+                <form method="post" action="./api/edit.php">
+                  <table class="table">
+                    <thead class="text-warning">
+                      <th>顯示</th>
+                      <th>關於我</th>
+                      <th>排序</th>
+                      <th>編輯</th>
+                    </thead>
+                    <tbody>
+                      <?php
+                      $me = $Me->all(' order by `rank` ');
+
+                      foreach ($me as $key => $poster) {
+                      ?>
+                        <tr>
+                          <td>
+                            <div class="form-check">
+                              <label class="form-check-label">
+                                <input class="form-check-input" type="checkbox" name="sh[]" value="<?= $poster['id']; ?>" <?= ($poster['sh'] == 1) ? 'checked' : ''; ?>>
+                                <span class="form-check-sign">
+                                  <span class="check"></span>
+                                </span>
+                              </label>
+                            </div>
+                          </td>
+                          <td><textarea class="form-control" name="text[]" rows="5" style="width: 95%;height:150px"><?= $poster['text']; ?></textarea></td>
+                          <td>
+                            <?php
+                            if ($key != 0) {
+                            ?>
+                              <input class="btn btn-warning" type="button" value="往上" onclick="sw('re_me',<?= $poster['id']; ?>,<?= $me[$key - 1]['id']; ?>)">
+                            <?php
+                            }
+                            ?>
+                            <?php
+                            if ($key != (count($me) - 1)) {
+                            ?>
+                              <input class="btn btn-warning" type="button" value="往下" onclick="sw('re_me',<?= $poster['id']; ?>,<?= $me[$key + 1]['id']; ?>)">
+                            <?php
+                            }
+                            ?>
+                          </td>
+                          <input type="hidden" name="id[]" value="<?= $poster['id']; ?>">
+                          <input type="hidden" name="table" value="re_me">
+                          <td class="td-actions text-right">
+                            <button type="submit" rel="tooltip" title="Edit" class="btn btn-warning btn-link btn-sm">
+                              <i class="material-icons">edit</i>
+                            </button>
+                            <button type="submit" name="del[]" value="<?= $poster['id']; ?>" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
+                              <i class="material-icons">close</i>
+                            </button>
+                          </td>
+                        </tr>
+                      <?php
+                      }
+                      ?>
+                      <tr>
+                        <td width="200px"><input class="btn btn-warning btn-block" type="button" onclick="op('#cover','#cvr','./modal/me.php?table=re_me')" value="新增"></td>
+                        <td>
+                          <button type="submit" rel="tooltip" title="All Edit" class="btn btn-warning btn-link btn-sm">
+                            <i class="material-icons">edit</i>
+                          </button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </form>
+              </div>
+              <div class="tab-pane" id="headshot">
+                <form method="post" action="./api/edit.php">
+                  <table class="table">
+                    <thead class="text-warning">
+                      <th>顯示</th>
+                      <th>大頭貼圖片</th>
+                      <th>姓名</th>
+                      <th>排序</th>
+                      <th>編輯</th>
+                    </thead>
+                    <tbody>
+                      <?php
+                      $headshot = $Headshot->all(' order by `rank` ');
+                      foreach ($headshot as $key => $poster) {
+                      ?>
+                        <tr>
+                          <td>
+                            <div class="form-check">
+                              <label class="form-check-label">
+                                <input class="form-check-input" type="checkbox" name="sh[]" value="<?= $poster['id']; ?>" <?= ($poster['sh'] == 1) ? 'checked' : ''; ?>>
+                                <span class="form-check-sign">
+                                  <span class="check"></span>
+                                </span>
+                              </label>
+                            </div>
+                          </td>
+                          <td><img src="./front/img/portfolio/<?= $poster['img']; ?>" style="width:100px;height:100px"></td>
+                          <td><input class="form-control" type="text" name="text[]" value="<?= $poster['text']; ?>" style="width:50%"></td>
+                          <td>
+                            <?php
+                            if ($key != 0) {
+                            ?>
+                              <input class="btn btn-warning" type="button" value="往上" onclick="sw('re_headshot',<?= $poster['id']; ?>,<?= $headshot[$key - 1]['id']; ?>)">
+                            <?php
+                            }
+                            ?>
+                            <?php
+                            if ($key != (count($headshot) - 1)) {
+                            ?>
+                              <input class="btn btn-warning" type="button" value="往下" onclick="sw('re_headshot',<?= $poster['id']; ?>,<?= $headshot[$key + 1]['id']; ?>)">
+                            <?php
+                            }
+                            ?>
+                          </td>
+                          <input type="hidden" name="id[]" value="<?= $poster['id']; ?>">
+                          <input type="hidden" name="table" value="re_headshot">
+                          <td class="td-actions text-right">
+                            <button type="submit" rel="tooltip" title="Edit" class="btn btn-warning btn-link btn-sm">
+                              <i class="material-icons">edit</i>
+                            </button>
+                            <button type="submit" name="del[]" value="<?= $poster['id']; ?>" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
+                              <i class="material-icons">close</i>
+                            </button>
+                          </td>
+                        </tr>
+                      <?php
+                      }
+                      ?>
+                      <tr>
+                        <td width="200px">
+                          <input class="btn btn-warning btn-block" type="button" onclick="op('#cover','#cvr','./modal/headshot.php?table=re_headshot')" value="新增">
+                        </td>
+                        <td>
+                          <button type="submit" rel="tooltip" title="All Edit" class="btn btn-warning btn-link btn-sm">
                             <i class="material-icons">edit</i>
                           </button>
                         </td>
@@ -106,7 +288,7 @@
               <div class="tab-pane" id="messages">
                 <form method="post" action="./api/edit.php">
                   <table class="table">
-                    <thead class="text-primary">
+                    <thead class="text-warning">
                       <th>顯示</th>
                       <th>學校</th>
                       <th>簡介</th>
@@ -136,14 +318,14 @@
                             <?php
                             if ($key != 0) {
                             ?>
-                              <input class="btn btn-primary" type="button" value="往上" onclick="sw('re_education',<?= $poster['id']; ?>,<?= $Edu[$key - 1]['id']; ?>)">
+                              <input class="btn btn-warning" type="button" value="往上" onclick="sw('re_education',<?= $poster['id']; ?>,<?= $Edu[$key - 1]['id']; ?>)">
                             <?php
                             }
                             ?>
                             <?php
                             if ($key != (count($Edu) - 1)) {
                             ?>
-                              <input class="btn btn-primary" type="button" value="往下" onclick="sw('re_education',<?= $poster['id']; ?>,<?= $Edu[$key + 1]['id']; ?>)">
+                              <input class="btn btn-warning" type="button" value="往下" onclick="sw('re_education',<?= $poster['id']; ?>,<?= $Edu[$key + 1]['id']; ?>)">
                             <?php
                             }
                             ?>
@@ -151,7 +333,7 @@
                           <input type="hidden" name="id[]" value="<?= $poster['id']; ?>">
                           <input type="hidden" name="table" value="re_education">
                           <td class="td-actions text-right">
-                            <button type="submit" rel="tooltip" title="Edit" class="btn btn-primary btn-link btn-sm">
+                            <button type="submit" rel="tooltip" title="Edit" class="btn btn-warning btn-link btn-sm">
                               <i class="material-icons">edit</i>
                             </button>
                             <button type="submit" name="del[]" value="<?= $poster['id']; ?>" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
@@ -163,9 +345,9 @@
                       }
                       ?>
                       <tr>
-                        <td width="200px"><input class="btn btn-primary btn-block" type="button" onclick="op('#cover','#cvr','./modal/edu.php?table=re_education')" value="新增"></td>
+                        <td width="200px"><input class="btn btn-warning btn-block" type="button" onclick="op('#cover','#cvr','./modal/edu.php?table=re_education')" value="新增"></td>
                         <td>
-                          <button type="submit" rel="tooltip" title="All Edit" class="btn btn-primary btn-link btn-sm">
+                          <button type="submit" rel="tooltip" title="All Edit" class="btn btn-warning btn-link btn-sm">
                             <i class="material-icons">edit</i>
                           </button>
                         </td>
@@ -177,7 +359,7 @@
               <div class="tab-pane" id="settings">
                 <form method="post" action="./api/edit.php">
                   <table class="table">
-                    <thead class="text-primary">
+                    <thead class="text-warning">
                       <th>顯示</th>
                       <th>公司</th>
                       <th>簡介</th>
@@ -207,14 +389,14 @@
                             <?php
                             if ($key != 0) {
                             ?>
-                              <input class="btn btn-primary" type="button" value="往上" onclick="sw('re_experience',<?= $poster['id']; ?>,<?= $Ex[$key - 1]['id']; ?>)">
+                              <input class="btn btn-warning" type="button" value="往上" onclick="sw('re_experience',<?= $poster['id']; ?>,<?= $Ex[$key - 1]['id']; ?>)">
                             <?php
                             }
                             ?>
                             <?php
                             if ($key != (count($Ex) - 1)) {
                             ?>
-                              <input class="btn btn-primary" type="button" value="往下" onclick="sw('re_experience',<?= $poster['id']; ?>,<?= $Ex[$key + 1]['id']; ?>)">
+                              <input class="btn btn-warning" type="button" value="往下" onclick="sw('re_experience',<?= $poster['id']; ?>,<?= $Ex[$key + 1]['id']; ?>)">
                             <?php
                             }
                             ?>
@@ -222,7 +404,7 @@
                           <input type="hidden" name="id[]" value="<?= $poster['id']; ?>">
                           <input type="hidden" name="table" value="re_experience">
                           <td class="td-actions text-right">
-                            <button type="submit" rel="tooltip" title="Edit" class="btn btn-primary btn-link btn-sm">
+                            <button type="submit" rel="tooltip" title="Edit" class="btn btn-warning btn-link btn-sm">
                               <i class="material-icons">edit</i>
                             </button>
                             <button type="submit" name="del[]" value="<?= $poster['id']; ?>" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
@@ -234,9 +416,9 @@
                       }
                       ?>
                       <tr>
-                        <td width="200px"><input class="btn btn-primary btn-block" type="button" onclick="op('#cover','#cvr','./modal/ex.php?table=re_experience')" value="新增"></td>
+                        <td width="200px"><input class="btn btn-warning btn-block" type="button" onclick="op('#cover','#cvr','./modal/ex.php?table=re_experience')" value="新增"></td>
                         <td>
-                          <button type="submit" rel="tooltip" title="All Edit" class="btn btn-primary btn-link btn-sm">
+                          <button type="submit" rel="tooltip" title="All Edit" class="btn btn-warning btn-link btn-sm">
                             <i class="material-icons">edit</i>
                           </button>
                         </td>
@@ -248,12 +430,13 @@
               <div class="tab-pane" id="port">
                 <form method="post" action="./api/edit.php">
                   <table class="table">
-                    <thead class="text-primary">
+                    <thead class="text-warning">
                       <th>顯示</th>
                       <th>作品圖片</th>
                       <th>作品主題</th>
                       <th>作品分類</th>
                       <th>作品簡介</th>
+                      <th>連結</th>
                       <th>排序</th>
                       <th>編輯</th>
                     </thead>
@@ -284,18 +467,19 @@
                             <!-- <input type="text" name="class[]" value="" style="width:50%"> -->
                           </td>
                           <td><input class="form-control" type="text" name="text2[]" value="<?= $poster['text2']; ?>" style="width:50%"></td>
+                          <td><input class="form-control" type="text" name="href[]" value="<?= $poster['href']; ?>"></td>
                           <td>
                             <?php
                             if ($key != 0) {
                             ?>
-                              <input class="btn btn-primary" type="button" value="往上" onclick="sw('re_port',<?= $poster['id']; ?>,<?= $po[$key - 1]['id']; ?>)">
+                              <input class="btn btn-warning" type="button" value="往上" onclick="sw('re_port',<?= $poster['id']; ?>,<?= $po[$key - 1]['id']; ?>)">
                             <?php
                             }
                             ?>
                             <?php
                             if ($key != (count($po) - 1)) {
                             ?>
-                              <input class="btn btn-primary" type="button" value="往下" onclick="sw('re_port',<?= $poster['id']; ?>,<?= $po[$key + 1]['id']; ?>)">
+                              <input class="btn btn-warning" type="button" value="往下" onclick="sw('re_port',<?= $poster['id']; ?>,<?= $po[$key + 1]['id']; ?>)">
                             <?php
                             }
                             ?>
@@ -303,7 +487,7 @@
                           <input type="hidden" name="id[]" value="<?= $poster['id']; ?>">
                           <input type="hidden" name="table" value="re_port">
                           <td class="td-actions text-right">
-                            <button type="submit" rel="tooltip" title="Edit" class="btn btn-primary btn-link btn-sm">
+                            <button type="submit" rel="tooltip" title="Edit" class="btn btn-warning btn-link btn-sm">
                               <i class="material-icons">edit</i>
                             </button>
                             <button type="submit" name="del[]" value="<?= $poster['id']; ?>" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
@@ -316,10 +500,10 @@
                       ?>
                       <tr>
                         <td width="200px">
-                          <input class="btn btn-primary btn-block" type="button" onclick="op('#cover','#cvr','./modal/port.php?table=re_port')" value="新增">
+                          <input class="btn btn-warning btn-block" type="button" onclick="op('#cover','#cvr','./modal/port.php?table=re_port')" value="新增">
                         </td>
                         <td>
-                          <button type="submit" rel="tooltip" title="All Edit" class="btn btn-primary btn-link btn-sm">
+                          <button type="submit" rel="tooltip" title="All Edit" class="btn btn-warning btn-link btn-sm">
                             <i class="material-icons">edit</i>
                           </button>
                         </td>
@@ -331,7 +515,7 @@
               <div class="tab-pane" id="menu">
                 <form method="post" action="./api/edit.php">
                   <table class="table">
-                    <thead class="text-primary">
+                    <thead class="text-warning">
                       <th>顯示</th>
                       <th>內容</th>
                       <th>連結</th>
@@ -361,14 +545,14 @@
                             <?php
                             if ($key != 0) {
                             ?>
-                              <input class="btn btn-primary" type="button" value="往上" onclick="sw('re_menu',<?= $poster['id']; ?>,<?= $menu[$key - 1]['id']; ?>)">
+                              <input class="btn btn-warning" type="button" value="往上" onclick="sw('re_menu',<?= $poster['id']; ?>,<?= $menu[$key - 1]['id']; ?>)">
                             <?php
                             }
                             ?>
                             <?php
                             if ($key != (count($menu) - 1)) {
                             ?>
-                              <input class="btn btn-primary" type="button" value="往下" onclick="sw('re_menu',<?= $poster['id']; ?>,<?= $menu[$key + 1]['id']; ?>)">
+                              <input class="btn btn-warning" type="button" value="往下" onclick="sw('re_menu',<?= $poster['id']; ?>,<?= $menu[$key + 1]['id']; ?>)">
                             <?php
                             }
                             ?>
@@ -376,7 +560,7 @@
                           <input type="hidden" name="id[]" value="<?= $poster['id']; ?>">
                           <input type="hidden" name="table" value="re_menu">
                           <td class="td-actions text-right">
-                            <button type="submit" rel="tooltip" title="Edit" class="btn btn-primary btn-link btn-sm">
+                            <button type="submit" rel="tooltip" title="Edit" class="btn btn-warning btn-link btn-sm">
                               <i class="material-icons">edit</i>
                             </button>
                             <button type="submit" name="del[]" value="<?= $poster['id']; ?>" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
@@ -389,9 +573,9 @@
                       }
                       ?>
                       <tr>
-                        <td width="200px"><input class="btn btn-primary btn-block" type="button" onclick="op('#cover','#cvr','./modal/menu.php?table=re_menu')" value="新增"></td>
+                        <td width="200px"><input class="btn btn-warning btn-block" type="button" onclick="op('#cover','#cvr','./modal/menu.php?table=re_menu')" value="新增"></td>
                         <td>
-                          <button type="submit" rel="tooltip" title="All Edit" class="btn btn-primary btn-link btn-sm">
+                          <button type="submit" rel="tooltip" title="All Edit" class="btn btn-warning btn-link btn-sm">
                             <i class="material-icons">edit</i>
                           </button>
                         </td>
@@ -403,7 +587,7 @@
               <div class="tab-pane" id="skill">
                 <form method="post" action="./api/edit.php">
                   <table class="table">
-                    <thead class="text-primary">
+                    <thead class="text-warning">
                       <th>顯示</th>
                       <th>技能圖片</th>
                       <th>技能主題</th>
@@ -441,14 +625,14 @@
                             <?php
                             if ($key != 0) {
                             ?>
-                              <input class="btn btn-primary" type="button" value="往上" onclick="sw('re_skill',<?= $poster['id']; ?>,<?= $skill[$key - 1]['id']; ?>)">
+                              <input class="btn btn-warning" type="button" value="往上" onclick="sw('re_skill',<?= $poster['id']; ?>,<?= $skill[$key - 1]['id']; ?>)">
                             <?php
                             }
                             ?>
                             <?php
                             if ($key != (count($skill) - 1)) {
                             ?>
-                              <input class="btn btn-primary" type="button" value="往下" onclick="sw('re_skill',<?= $poster['id']; ?>,<?= $skill[$key + 1]['id']; ?>)">
+                              <input class="btn btn-warning" type="button" value="往下" onclick="sw('re_skill',<?= $poster['id']; ?>,<?= $skill[$key + 1]['id']; ?>)">
                             <?php
                             }
                             ?>
@@ -456,7 +640,7 @@
                           <input type="hidden" name="id[]" value="<?= $poster['id']; ?>">
                           <input type="hidden" name="table" value="re_skill">
                           <td class="td-actions text-right">
-                            <button type="submit" rel="tooltip" title="Edit" class="btn btn-primary btn-link btn-sm">
+                            <button type="submit" rel="tooltip" title="Edit" class="btn btn-warning btn-link btn-sm">
                               <i class="material-icons">edit</i>
                             </button>
                             <button type="submit" name="del[]" value="<?= $poster['id']; ?>" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
@@ -469,10 +653,158 @@
                       ?>
                       <tr>
                         <td width="200px">
-                          <input class="btn btn-primary btn-block" type="button" onclick="op('#cover','#cvr','./modal/skill.php?table=re_skill')" value="新增">
+                          <input class="btn btn-warning btn-block" type="button" onclick="op('#cover','#cvr','./modal/skill.php?table=re_skill')" value="新增">
                         </td>
                         <td>
-                          <button type="submit" rel="tooltip" title="All Edit" class="btn btn-primary btn-link btn-sm">
+                          <button type="submit" rel="tooltip" title="All Edit" class="btn btn-warning btn-link btn-sm">
+                            <i class="material-icons">edit</i>
+                          </button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </form>
+              </div>
+              <div class="tab-pane" id="connection">
+                <form method="post" action="./api/edit.php">
+                  <table class="table">
+                    <thead class="text-warning">
+                      <th>顯示</th>
+                      <th>圖示</th>
+                      <th>聯絡方式</th>
+                      <th>內容</th>
+                      <th>連結</th>
+                      <th>排序</th>
+                      <th>編輯</th>
+                    </thead>
+                    <tbody>
+                      <?php
+                      $connection = $Connection->all(' order by `rank` ');
+
+                      foreach ($connection as $key => $poster) {
+                      ?>
+                        <tr>
+                          <td>
+                            <div class="form-check">
+                              <label class="form-check-label">
+                                <input class="form-check-input" type="checkbox" name="sh[]" value="<?= $poster['id']; ?>" <?= ($poster['sh'] == 1) ? 'checked' : ''; ?>>
+                                <span class="form-check-sign">
+                                  <span class="check"></span>
+                                </span>
+                              </label>
+                            </div>
+                          </td>
+                          <td>
+                          <input class="form-control" type="text" name="icon[]" value="<?= $poster['icon']; ?>" style="width:50%">
+                          </td>
+                          <td><input class="form-control" type="text" name="text[]" value="<?= $poster['text']; ?>" style="width:50%"></td>
+                          <td><input class="form-control" type="text" name="text2[]" value="<?= $poster['text2']; ?>" style="width:50%"></td>
+                          <td><input class="form-control" type="text" name="href[]" value="<?= $poster['href']; ?>"></td>
+                          <td>
+                            <?php
+                            if ($key != 0) {
+                            ?>
+                              <input class="btn btn-warning" type="button" value="往上" onclick="sw('re_connection',<?= $poster['id']; ?>,<?= $connection[$key - 1]['id']; ?>)">
+                            <?php
+                            }
+                            ?>
+                            <?php
+                            if ($key != (count($connection) - 1)) {
+                            ?>
+                              <input class="btn btn-warning" type="button" value="往下" onclick="sw('re_connection',<?= $poster['id']; ?>,<?= $connection[$key + 1]['id']; ?>)">
+                            <?php
+                            }
+                            ?>
+                          </td>
+                          <input type="hidden" name="id[]" value="<?= $poster['id']; ?>">
+                          <input type="hidden" name="table" value="re_connection">
+                          <td class="td-actions text-right">
+                            <button type="submit" rel="tooltip" title="Edit" class="btn btn-warning btn-link btn-sm">
+                              <i class="material-icons">edit</i>
+                            </button>
+                            <button type="submit" name="del[]" value="<?= $poster['id']; ?>" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
+                              <i class="material-icons">close</i>
+                            </button>
+                          </td>
+                        </tr>
+                      <?php
+                      }
+                      ?>
+                      <tr>
+                        <td width="200px"><input class="btn btn-warning btn-block" type="button" onclick="op('#cover','#cvr','./modal/connection.php?table=re_connection')" value="新增"></td>
+                        <td>
+                          <button type="submit" rel="tooltip" title="All Edit" class="btn btn-warning btn-link btn-sm">
+                            <i class="material-icons">edit</i>
+                          </button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </form>
+              </div>
+              <div class="tab-pane" id="job">
+                <form method="post" action="./api/edit.php">
+                  <table class="table">
+                    <thead class="text-warning">
+                      <th>顯示</th>
+                      <th>求職條件</th>
+                      <th>簡介</th>
+                      <th>排序</th>
+                      <th>編輯</th>
+                    </thead>
+                    <tbody>
+                      <?php
+                      $job = $Job->all(' order by `rank` ');
+
+                      foreach ($job as $key => $poster) {
+                      ?>
+                        <tr>
+                          <td>
+                            <div class="form-check">
+                              <label class="form-check-label">
+                                <input class="form-check-input" type="checkbox" name="sh[]" value="<?= $poster['id']; ?>" <?= ($poster['sh'] == 1) ? 'checked' : ''; ?>>
+                                <span class="form-check-sign">
+                                  <span class="check"></span>
+                                </span>
+                              </label>
+                            </div>
+                          </td>
+                          <td><input class="form-control" type="text" name="text[]" value="<?= $poster['text']; ?>" style="width:50%"></td>
+                          <td><input class="form-control" type="text" name="text2[]" value="<?= $poster['text2']; ?>" style="width:50%"></td>
+                          <td>
+                            <?php
+                            if ($key != 0) {
+                            ?>
+                              <input class="btn btn-warning" type="button" value="往上" onclick="sw('re_job',<?= $poster['id']; ?>,<?= $job[$key - 1]['id']; ?>)">
+                            <?php
+                            }
+                            ?>
+                            <?php
+                            if ($key != (count($job) - 1)) {
+                            ?>
+                              <input class="btn btn-warning" type="button" value="往下" onclick="sw('re_job',<?= $poster['id']; ?>,<?= $job[$key + 1]['id']; ?>)">
+                            <?php
+                            }
+                            ?>
+                          </td>
+                          <input type="hidden" name="id[]" value="<?= $poster['id']; ?>">
+                          <input type="hidden" name="table" value="re_job">
+                          <td class="td-actions text-right">
+                            <button type="submit" rel="tooltip" title="Edit" class="btn btn-warning btn-link btn-sm">
+                              <i class="material-icons">edit</i>
+                            </button>
+                            <button type="submit" name="del[]" value="<?= $poster['id']; ?>" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
+                              <i class="material-icons">close</i>
+                            </button>
+                          </td>
+                        </tr>
+                      <?php
+                      }
+                      ?>
+                      <tr>
+                        <td width="200px"><input class="btn btn-warning btn-block" type="button" onclick="op('#cover','#cvr','./modal/job.php?table=re_job')" value="新增"></td>
+                        <td>
+                          <button type="submit" rel="tooltip" title="All Edit" class="btn btn-warning btn-link btn-sm">
                             <i class="material-icons">edit</i>
                           </button>
                         </td>
@@ -509,44 +841,6 @@
           </div>
           <div class="clearfix"></div>
         </a>
-      </li>
-      <li class="header-title">Images</li>
-      <li class="active">
-        <a class="img-holder switch-trigger" href="javascript:void(0)">
-          <img src="../assets/img/sidebar-1.jpg" alt="">
-        </a>
-      </li>
-      <li>
-        <a class="img-holder switch-trigger" href="javascript:void(0)">
-          <img src="../assets/img/sidebar-2.jpg" alt="">
-        </a>
-      </li>
-      <li>
-        <a class="img-holder switch-trigger" href="javascript:void(0)">
-          <img src="../assets/img/sidebar-3.jpg" alt="">
-        </a>
-      </li>
-      <li>
-        <a class="img-holder switch-trigger" href="javascript:void(0)">
-          <img src="../assets/img/sidebar-4.jpg" alt="">
-        </a>
-      </li>
-      <li class="button-container">
-        <a href="https://www.creative-tim.com/product/material-dashboard" target="_blank" class="btn btn-primary btn-block">Free Download</a>
-      </li>
-      <!-- <li class="header-title">Want more components?</li>
-            <li class="button-container">
-                <a href="https://www.creative-tim.com/product/material-dashboard-pro" target="_blank" class="btn btn-warning btn-block">
-                  Get the pro version
-                </a>
-            </li> -->
-      <li class="button-container">
-        <a href="https://demos.creative-tim.com/material-dashboard/docs/2.1/getting-started/introduction.html" target="_blank" class="btn btn-default btn-block">
-          View Documentation
-        </a>
-      </li>
-      <li class="button-container github-star">
-        <a class="github-button" href="https://github.com/creativetimofficial/material-dashboard" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star ntkme/github-buttons on GitHub">Star</a>
       </li>
       <li class="header-title">Thank you for 95 shares!</li>
       <li class="button-container text-center">

@@ -7,7 +7,7 @@ $id=$_POST['id'];
 $row=$db->find($id);
 
 if(!empty($_FILES['img']['tmp_name'])){
-    move_uploaded_file($_FILES['img']['tmp_name'],'../img/'.$_FILES['img']['name']);
+    move_uploaded_file($_FILES['img']['tmp_name'],'../front/img/portfolio/'.$_FILES['img']['name']);
     $row['img']=$_FILES['img']['name'];
 }
 

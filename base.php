@@ -1,35 +1,6 @@
 <?php
 date_default_timezone_set("Asia/Taipei");
 session_start();
-// $tstr=[
-//     'title'=>"網站標題管理",
-//     'ad'=>"動態文字廣告管理",
-//     'mvim'=>"動畫圖片管理",
-//     'image'=>"校園映像圖片管理",
-//     'total'=>"進站人數管理",
-//     'bottom'=>"頁尾版權文字管理",
-//     'news'=>"最新管理",
-//     'admin'=>"管理者管理",
-//     'menu'=>"選單管理",
-// ];
-// $addstr=[
-//     'title'=>"新增網站標題",
-//     'ad'=>"新增動態文字廣告",
-//     'mvim'=>"新增動畫圖片",
-//     'image'=>"新增校園映像圖片",
-//     'total'=>"新增進站人數",
-//     'bottom'=>"新增頁尾版權文字",
-//     'news'=>"新增最新消息",
-//     'admin'=>"新增管理者",
-//     'menu'=>"新增主選單",
-// ];
-
-// $uploadimg=[
-//     'image'=>['更新校園映像圖片','校園映像圖片'],
-//     'mvim'=>['更換動畫圖片','動畫圖片'],
-//     'title'=>['更新網站標題圖片','網站標題圖片'],
-
-// ];
 
 
 class DB{
@@ -150,12 +121,6 @@ function to($url){
 }
 
 
-$Title=new DB("title");
-$Ad=new DB("ad");
-$Mvim=new DB("mvim");
-$Image=new DB("image");
-$Total=new DB("total");
-$Bottom=new DB("bottom");
 $Aut=new DB("re_aut");
 $Admin=new DB("re_admin");
 $Menu=new DB("re_menu");
@@ -163,11 +128,10 @@ $Education=new DB("re_education");
 $Experience=new DB("re_experience");
 $Port=new DB("re_port");
 $Skill=new DB("re_skill");
+$Connection=new DB("re_connection");
+$Headshot=new DB("re_headshot");
+$Me=new DB("re_me");
+$Job=new DB("re_job");
 
-if (empty($_SESSION['total'])) {
-    $total=$Total->find(1);
-    $total['total']++;
-    $Total->save($total);
-    $_SESSION['total']=$total['total'];
-}
+
 ?>

@@ -6,17 +6,6 @@ if (empty($_SESSION['login'])) {
 }
 ?>
 
-<!--
-=========================================================
-Material Dashboard - v2.1.2
-=========================================================
-
-Product Page: https://www.creative-tim.com/product/material-dashboard
-Copyright 2020 Creative Tim (https://www.creative-tim.com)
-Coded by Creative Tim
-
-=========================================================
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -26,14 +15,14 @@ The above copyright notice and this permission notice shall be included in all c
   <link href="front/img/favicon.ico" rel="icon">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>
-    Material Dashboard by Creative Tim
+    johny
   </title>
   <meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
   <!--     Fonts and icons     -->
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
   <!-- CSS Files -->
-  <link href="assets/css/material-dashboard.css?v=2.1.2" rel="stylesheet" />
+  <link href="assets/css/material-dashboard.css" rel="stylesheet" />
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link href="assets/demo/demo.css" rel="stylesheet" />
   <script src="js/js.js"></script>
@@ -42,34 +31,35 @@ The above copyright notice and this permission notice shall be included in all c
 
 <body class="">
   <div class="wrapper ">
-  <div id="cover" style="display:none; ">
-        <div id="coverr">
-            <a class="btn btn-danger btn-link btn-sm" style="position:absolute; right:3px; top:4px; cursor:pointer; z-index:9999;"
-                onclick="cl('#cover')"><i class="material-icons">close</i></a>
-            <div id="cvr" style="position:absolute; width:99%; height:100%; margin:auto; z-index:9898;"></div>
+    <div id="cover" style="display:none; ">
+      <div id="coverr">
+        <div id="cvr" >
         </div>
+        <a class="btn btn-danger btn-link btn-sm" onclick="cl('#cover')"><i class="material-icons">close</i></a>
+      </div>
     </div>
-    <div class="sidebar" data-color="purple" data-background-color="white" data-image="assets/img/sidebar-1.jpg">
-      <!--
-        Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
-
-        Tip 2: you can also add an image using data-image tag
-    -->
+    <div class="sidebar" data-color="azure" data-background-color="white" data-image="front/img/intro-carousel/13.jpg">
       <div class="logo"><a href="index.php" class="simple-text logo-normal">
           Johny
         </a></div>
       <div class="sidebar-wrapper">
         <ul class="nav">
-          <li class="nav-item  <?=($_GET['do']=='news')? "active" : 'active'; ?>">
-            <a class="nav-link" href="?do=news" >
+          <li class="nav-item  <?= ($_GET['do'] == 'news' || $_GET['do'] == null) ? "active" : ''; ?>">
+            <a class="nav-link" href="?do=news">
               <i class="material-icons">dashboard</i>
               <p>履歷表</p>
             </a>
           </li>
-          <li class="nav-item <?=($_GET['do']=='admin')? "active" : ''; ?>">
-            <a class="nav-link" href="?do=admin" >
+          <li data-color="purple" class="nav-item <?= ($_GET['do'] == 're_admin') ? "active" : ''; ?>">
+            <a class="nav-link" href="?do=re_admin">
               <i class="material-icons">person</i>
               <p>編輯帳號</p>
+            </a>
+          </li>
+          <li data-color="purple" class="nav-item <?= ($_GET['do'] == 'phto') ? "active" : ''; ?>">
+            <a class="nav-link" href="?do=phto">
+              <i class="material-icons">person</i>
+              <p>相簿</p>
             </a>
           </li>
         </ul>
@@ -79,9 +69,6 @@ The above copyright notice and this permission notice shall be included in all c
       <!-- Navbar -->
       <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
         <div class="container-fluid">
-          <div class="navbar-wrapper">
-            <a class="navbar-brand" href="javascript:;">User Profile</a>
-          </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
             <span class="sr-only">Toggle navigation</span>
             <span class="navbar-toggler-icon icon-bar"></span>
@@ -89,40 +76,7 @@ The above copyright notice and this permission notice shall be included in all c
             <span class="navbar-toggler-icon icon-bar"></span>
           </button>
           <div class="collapse navbar-collapse justify-content-end">
-            <form class="navbar-form">
-              <div class="input-group no-border">
-                <input type="text" value="" class="form-control" placeholder="Search...">
-                <button type="submit" class="btn btn-white btn-round btn-just-icon">
-                  <i class="material-icons">search</i>
-                  <div class="ripple-container"></div>
-                </button>
-              </div>
-            </form>
             <ul class="navbar-nav">
-              <li class="nav-item">
-                <a class="nav-link" href="javascript:;">
-                  <i class="material-icons">dashboard</i>
-                  <p class="d-lg-none d-md-block">
-                    Stats
-                  </p>
-                </a>
-              </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <i class="material-icons">notifications</i>
-                  <span class="notification">5</span>
-                  <p class="d-lg-none d-md-block">
-                    Some Actions
-                  </p>
-                </a>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                  <a class="dropdown-item" href="#">Mike John responded to your email</a>
-                  <a class="dropdown-item" href="#">You have 5 new tasks</a>
-                  <a class="dropdown-item" href="#">You're now friend with Andrew</a>
-                  <a class="dropdown-item" href="#">Another Notification</a>
-                  <a class="dropdown-item" href="#">Another One</a>
-                </div>
-              </li>
               <li class="nav-item dropdown">
                 <a class="nav-link" href="javascript:;" id="navbarDropdownProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <i class="material-icons">person</i>
@@ -131,9 +85,6 @@ The above copyright notice and this permission notice shall be included in all c
                   </p>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
-                  <a class="dropdown-item" href="#">Profile</a>
-                  <a class="dropdown-item" href="#">Settings</a>
-                  <div class="dropdown-divider"></div>
                   <a class="dropdown-item" href="api/logout.php">登出</a>
                 </div>
               </li>
@@ -146,7 +97,7 @@ The above copyright notice and this permission notice shall be included in all c
 
 
 
-      $do =isset($_GET['do']) ? $_GET['do'] : 'news';
+      $do = isset($_GET['do']) ? $_GET['do'] : 'news';
       $file = "./backend/" . $do . ".php";
       if (file_exists($file)) {
         include $file;
@@ -178,48 +129,7 @@ The above copyright notice and this permission notice shall be included in all c
             <div class="clearfix"></div>
           </a>
         </li>
-        <li class="header-title">Images</li>
-        <li class="active">
-          <a class="img-holder switch-trigger" href="javascript:void(0)">
-            <img src="assets/img/sidebar-1.jpg" alt="">
-          </a>
-        </li>
-        <li>
-          <a class="img-holder switch-trigger" href="javascript:void(0)">
-            <img src="assets/img/sidebar-2.jpg" alt="">
-          </a>
-        </li>
-        <li>
-          <a class="img-holder switch-trigger" href="javascript:void(0)">
-            <img src="assets/img/sidebar-3.jpg" alt="">
-          </a>
-        </li>
-        <li>
-          <a class="img-holder switch-trigger" href="javascript:void(0)">
-            <img src="assets/img/sidebar-4.jpg" alt="">
-          </a>
-        </li>
-        <li class="button-container">
-          <a href="https://www.creative-tim.com/product/material-dashboard" target="_blank" class="btn btn-primary btn-block">Free Download</a>
-        </li>
-        <!-- <li class="header-title">Want more components?</li>
-            <li class="button-container">
-                <a href="https://www.creative-tim.com/product/material-dashboard-pro" target="_blank" class="btn btn-warning btn-block">
-                  Get the pro version
-                </a>
-            </li> -->
-        <li class="button-container">
-          <a href="https://demos.creative-tim.com/material-dashboard/docs/2.1/getting-started/introduction.html" target="_blank" class="btn btn-default btn-block">
-            View Documentation
-          </a>
-        </li>
-        <li class="button-container github-star">
-          <a class="github-button" href="https://github.com/creativetimofficial/material-dashboard" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star ntkme/github-buttons on GitHub">Star</a>
-        </li>
-        <li class="header-title">Thank you for 95 shares!</li>
         <li class="button-container text-center">
-          <button id="twitter" class="btn btn-round btn-twitter"><i class="fa fa-twitter"></i> &middot; 45</button>
-          <button id="facebook" class="btn btn-round btn-facebook"><i class="fa fa-facebook-f"></i> &middot; 50</button>
           <br>
           <br>
         </li>
@@ -251,16 +161,12 @@ The above copyright notice and this permission notice shall be included in all c
   <script src="assets/js/plugins/jasny-bootstrap.min.js"></script>
   <!--  Full Calendar Plugin, full documentation here: https://github.com/fullcalendar/fullcalendar    -->
   <script src="assets/js/plugins/fullcalendar.min.js"></script>
-  <!-- Vector Map plugin, full documentation here: http://jvectormap.com/documentation/ -->
-  <script src="assets/js/plugins/jquery-jvectormap.js"></script>
   <!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
   <script src="assets/js/plugins/nouislider.min.js"></script>
   <!-- Include a polyfill for ES6 Promises (optional) for IE11, UC Browser and Android browser support SweetAlert -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
   <!-- Library for adding dinamically elements -->
   <script src="assets/js/plugins/arrive.min.js"></script>
-  <!--  Google Maps Plugin    -->
-  <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
   <!-- Chartist JS -->
   <script src="assets/js/plugins/chartist.min.js"></script>
   <!--  Notifications Plugin    -->
@@ -439,12 +345,18 @@ The above copyright notice and this permission notice shall be included in all c
         });
       });
     });
-  function sw(table,idx,idy){
-    $.post("api/sw.php",{table,idx,idy},function(){
-    location.reload()
-    })
-  }
+
+    function sw(table, idx, idy) {
+      $.post("api/sw.php", {
+        table,
+        idx,
+        idy
+      }, function() {
+        location.reload()
+      })
+    }
   </script>
+
 </body>
 
 </html>

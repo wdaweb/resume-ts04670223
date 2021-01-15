@@ -55,4 +55,4 @@ foreach ($_POST['id'] as $key => $id) {
         $db->save($row);
     }
 }
-to("../backend.php?do=news");
+to("../backend.php?do=phto");

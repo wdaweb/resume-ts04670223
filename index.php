@@ -11,7 +11,6 @@
 
   <!-- Favicons -->
   <link href="front/img/favicon.ico" rel="icon">
-  <link href="front/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Montserrat:300,400,500,700" rel="stylesheet">
@@ -62,7 +61,7 @@
           <?php
           if (isset($_SESSION['login'])) {
           ?>
-            <li><a href="backend.php">返回管理</button></li>
+            <li><a href="backend.php">返回管理</a></button></li>
           <?php
           } else {
           ?>
@@ -86,29 +85,47 @@
         <div class="carousel-inner" role="listbox">
 
           <div class="carousel-item active">
-            <div class="carousel-background"><img src="front/img/intro-carousel/13.jpg" alt=""></div>
+            <div class="carousel-background"><img src="front/img/intro-carousel/sky.jpg" alt=""></div>
             <div class="carousel-container">
               <div class="carousel-content">
+              
+                <?php
+                $headshot = $Headshot->all(['sh' => 1], "order by rank");
+                foreach ($headshot as $main) {
+                ?>
 
-                <section id="team">
-                  <div class="col-lg-12 col-md-3 wow fadeInUp">
-                    <div class="member">
-                      <img src="front/img/my.jpg" class="img-fluid">
-                      <div class="member-info">
-                        <div class="member-info-content">
-                          <h4>賴俊宇</h4>
-                          <div class="social">
-                            <a href="https://github.com/ts04670223"><i class="fa fa-github"></i></a>
-                            <a href="https://codepen.io/ts04670223"><i class="fa fa-codepen"></i></a>
+                  <section id="team">
+                    <div class="col-lg-12 wow fadeInUp">
+                      <div class="member">
+                        <img src="front/img/<?= $main['img']; ?>" class="img-fluid">
+                        <div class="member-info">
+                          <div class="member-info-content">
+                            <h4><?= $main['text']; ?></h4>
+                            <div class="social">
+                              <a href="https://github.com/ts04670223"><i class="fa fa-github"></i></a>
+                              <a href="https://codepen.io/ts04670223"><i class="fa fa-codepen"></i></a>
+                            </div>
                           </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                </section>
-
-                <a href="#featured-services" class="btn-get-started scrollto">技能</a>
+                  </section>
+                <?php
+                }
+                ?>
               </div>
+                <?php
+                  $me = $Me->all(['sh' => 1], "order by rank");
+                  foreach ($me as $main) {
+                  ?>
+                <div class=" carousel-content">
+                  <h2>關於我</h2>
+                  <p><?= $main['text']; ?></p>
+                  <a href="#featured-services" class="btn-get-started scrollto">技能</a>
+                </div>
+                <?php
+                  }
+                  ?>
             </div>
           </div>
 
@@ -142,10 +159,10 @@
               ?>
                 <p class="description"><img style="width:30px;height:30px" src="front/img/portfolio/<?= $poster['img']; ?>"><?= $poster['text']; ?></p>
 
-              <?php
+            <?php
               }
             }
-              ?>
+            ?>
           </div>
           <div class="col-lg-4 box">
             <i class="ion-ios-bookmarks-outline"></i>
@@ -161,10 +178,10 @@
               ?>
                 <p class="description"><img style="width:30px;height:30px" src="front/img/portfolio/<?= $poster['img']; ?>"><?= $poster['text']; ?></p>
 
-              <?php
+            <?php
               }
             }
-              ?>
+            ?>
           </div>
           <div class="col-lg-4 box">
             <i class="ion-ios-bookmarks-outline"></i>
@@ -180,10 +197,10 @@
               ?>
                 <p class="description"><img style="width:30px;height:30px" src="front/img/portfolio/<?= $poster['img']; ?>"><?= $poster['text']; ?></p>
 
-              <?php
+            <?php
               }
             }
-              ?>
+            ?>
           </div>
           <!-- <div class="col-lg-4 box box-bg">
             <i class="ion-ios-stopwatch-outline"></i>
@@ -274,6 +291,31 @@
 
       </div>
     </section>
+    <section class="services" id="job">
+      <div class="container">
+
+        <header class="section-header wow fadeInUp">
+          <h3>求職條件</h3>
+        </header>
+
+        <div class="row">
+
+          <?php
+          $job = $Job->all(['sh' => 1], 'order by rank');
+          foreach ($job as $main) {
+
+          ?>
+
+            <div class="col-lg-12 col-md-6 box wow bounceInUp" data-wow-duration="1.4s">
+              <h4 class="title"><a><?= $main['text']; ?></a></h4>
+              <p class="description"><?= $main['text2']; ?></p>
+            </div>
+          <?php }; ?>
+
+        </div>
+
+      </div>
+    </section>
 
     <!-- #services -->
 
@@ -307,8 +349,15 @@
               <div class="portfolio-wrap">
                 <figure>
                   <img src="front/img/portfolio/<?= $main['img']; ?>" class="img-fluid" alt="">
-                  <a href="front/img/portfolio/<?= $main['img']; ?>" data-lightbox="portfolio" data-title="App 1" class="link-preview" title="Preview"><i class="ion ion-eye"></i></a>
-                  <a href="#" class="link-details" title="More Details"><i class="ion ion-android-open"></i></a>
+                  <a href="front/img/portfolio/<?= $main['img']; ?>" data-lightbox="portfolio" data-title="<?= $main['text']; ?>" class="link-preview" title="Preview"><i class="ion ion-eye"></i></a>
+                  <?php
+                  if (empty($main['href'])) {
+                  } else {
+                  ?>
+                    <a href="<?= $main['href']; ?>" class="link-details" title="More Details"><i class="ion ion-android-open"></i></a>
+                  <?php
+                  }
+                  ?>
                 </figure>
 
                 <div class="portfolio-info">
@@ -335,24 +384,23 @@
         <div class="section-header">
           <h3>聯絡我</h3>
         </div>
-
         <div class="row contact-info">
+          <?php
+          $connection = $Connection->all(' order by `rank` ');
 
-          <div class="col-md-6">
-            <div class="contact-phone">
-              <i class="ion-ios-telephone-outline"></i>
-              <h3>Phone Number</h3>
-              <p><a href="tel:+155895548855">0981779727</a></p>
-            </div>
-          </div>
+          foreach ($connection as $main) {
+          ?>
 
-          <div class="col-md-6">
-            <div class="contact-email">
-              <i class="ion-ios-email-outline"></i>
-              <h3>Email</h3>
-              <p><a href="mailto:ts04670223@gmail.com">ts04670223@gmail.com</a></p>
+            <div class="col-md-6">
+              <div class="contact-email">
+                <i class="<?= $main['icon']; ?>"></i>
+                <h3><?= $main['text']; ?></h3>
+                <p><a href="<?= $main['href']; ?>"><?= $main['text2']; ?></a></p>
+              </div>
             </div>
-          </div>
+          <?php
+          }
+          ?>
 
         </div>
 
@@ -368,7 +416,7 @@
 
   <!-- JavaScript Libraries -->
   <script src="front/lib/jquery/jquery.min.js"></script>
-  <script src="front/lib/jquery/jquery-migrate.min.js"></script>
+  <!-- <script src="front/lib/jquery/jquery-migrate.min.js"></script> -->
   <script src="front/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="front/lib/easing/easing.min.js"></script>
   <script src="front/lib/superfish/hoverIntent.js"></script>

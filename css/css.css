@@ -18,20 +18,19 @@ body
 }
 #coverr
 {
-	width:70%;
-	min-width:300px;
-	max-width:800px;
-	height:70%;
-	min-height:300px;
-	position:absolute;
-	z-index:5;
-	background:#ffffff;
-	top:0px;
-	left:0px;
-	right:0px;
-	bottom:0px;
-	margin:auto;
-	overflow:auto;
+    position: fixed;
+    background: #333333AA;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-basis: 50%;
+    color: white;
+    font-weight: bolder;
+    text-align: center;
 }
 #main
 {

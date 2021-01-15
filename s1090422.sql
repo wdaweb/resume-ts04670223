@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： 127.0.0.1
--- 產生時間： 2021-01-14 16:41:29
+-- 產生時間： 2021-01-15 09:24:27
 -- 伺服器版本： 10.4.14-MariaDB
 -- PHP 版本： 7.4.10
 
@@ -366,7 +366,7 @@ CREATE TABLE `re_admin` (
 
 INSERT INTO `re_admin` (`id`, `acc`, `pw`) VALUES
 (3, 'admin', '1234'),
-(4, 'ass', '789');
+(4, 'ass', '0000');
 
 -- --------------------------------------------------------
 
@@ -391,6 +391,30 @@ INSERT INTO `re_aut` (`id`, `text`, `sh`, `rank`) VALUES
 -- --------------------------------------------------------
 
 --
+-- 資料表結構 `re_connection`
+--
+
+CREATE TABLE `re_connection` (
+  `id` int(11) UNSIGNED NOT NULL,
+  `icon` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `text` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `text2` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `href` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `sh` int(1) UNSIGNED NOT NULL,
+  `rank` int(2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- 傾印資料表的資料 `re_connection`
+--
+
+INSERT INTO `re_connection` (`id`, `icon`, `text`, `text2`, `href`, `sh`, `rank`) VALUES
+(10, 'ion-ios-telephone-outline', '電話', '0981779727', 'tel:0981779727', 1, 3),
+(11, 'ion-ios-email-outline', '信箱', 'ts04670223@gmail.com', 'mailto:ts04670223@gmail.com', 1, 4);
+
+-- --------------------------------------------------------
+
+--
 -- 資料表結構 `re_education`
 --
 
@@ -408,8 +432,7 @@ CREATE TABLE `re_education` (
 
 INSERT INTO `re_education` (`id`, `text`, `text2`, `sh`, `rank`) VALUES
 (3, '德明財經科技大學', '財務金融系2016年~2020年', 1, 1),
-(7, 'fdfsdf', 'fdaffdsaf', 0, 2),
-(8, 'dsadasd', 'dasdasd', 0, 3);
+(13, 'dsadassad', 'sdsadsd', 0, 2);
 
 -- --------------------------------------------------------
 
@@ -430,8 +453,28 @@ CREATE TABLE `re_experience` (
 --
 
 INSERT INTO `re_experience` (`id`, `text`, `text2`, `sh`, `rank`) VALUES
-(3, '水礦科技股份有限公司', '一般行政2019年~2020年', 1, 1),
-(9, 'afdfsf', 'fadfdsf', 0, 2);
+(3, '水礦科技股份有限公司', '一般行政2019年~2020年', 1, 1);
+
+-- --------------------------------------------------------
+
+--
+-- 資料表結構 `re_headshot`
+--
+
+CREATE TABLE `re_headshot` (
+  `id` int(11) UNSIGNED NOT NULL,
+  `img` text NOT NULL,
+  `text` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `sh` int(1) NOT NULL,
+  `rank` int(2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- 傾印資料表的資料 `re_headshot`
+--
+
+INSERT INTO `re_headshot` (`id`, `img`, `text`, `sh`, `rank`) VALUES
+(1, 'my.jpg', '賴俊宇', 1, 8);
 
 -- --------------------------------------------------------
 
@@ -456,7 +499,8 @@ INSERT INTO `re_menu` (`id`, `text`, `href`, `sh`, `rank`) VALUES
 (18, '自傳', '#aut', 1, 2),
 (32, '學歷', '#education', 1, 3),
 (33, '經歷', '#experience', 1, 4),
-(34, '作品集', '#portfolio', 1, 5);
+(34, '作品集', '#portfolio', 1, 5),
+(36, '聯絡我', '#contact', 1, 6);
 
 -- --------------------------------------------------------
 
@@ -471,20 +515,26 @@ CREATE TABLE `re_port` (
   `sh` int(1) NOT NULL,
   `text2` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `class` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `rank` int(2) NOT NULL
+  `rank` int(2) NOT NULL,
+  `href` text COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- 傾印資料表的資料 `re_port`
 --
 
-INSERT INTO `re_port` (`id`, `text`, `img`, `sh`, `text2`, `class`, `rank`) VALUES
-(1, 'illustrator', 'ai1.jpg', 1, '女孩', '3', 1),
-(3, 'Photoshop', 'ps1.jpg', 1, '年曆', '3', 2),
-(4, 'Photoshop', 'ps2.jpg', 1, '酒標', '3', 3),
-(5, 'Photoshop', 'ps3.jpg', 1, '旅遊海報', '3', 4),
-(24, 'asdaddad', 'd3.png', 1, 'dasd', '1', 5),
-(25, 'dadasd', 'd1.png', 1, 'asdasd', '1', 6);
+INSERT INTO `re_port` (`id`, `text`, `img`, `sh`, `text2`, `class`, `rank`, `href`) VALUES
+(1, 'illustrator', 'ai1.jpg', 1, '女孩', '3', 1, ''),
+(3, 'Photoshop', 'ps1.jpg', 1, '年曆', '3', 2, ''),
+(4, 'Photoshop', 'ps2.jpg', 1, '酒標', '3', 3, ''),
+(5, 'Photoshop', 'ps3.jpg', 1, '旅遊海報', '3', 4, ''),
+(29, 'Css', 'but.JPG', 1, '蝴蝶', '1', 5, 'https://codepen.io/ts04670223/pen/QWEGgbe'),
+(30, 'Css', 't.JPG', 1, '表格', '1', 6, 'https://codepen.io/ts04670223/pen/LYNMqvV'),
+(31, 'Css', 'w.JPG', 1, '鯨魚動畫', '1', 7, 'https://codepen.io/ts04670223/pen/dyXGZNb'),
+(32, 'Illustrator', 'logo.jpg', 1, 'logo設計', '3', 8, ''),
+(33, 'Php', 'invoice.JPG', 1, '發票系統', '2', 11, 'https://github.com/ts04670223/invoice'),
+(34, 'Illustrator', 'ccss.jpg', 1, '圖標製作', '3', 9, ''),
+(36, 'Illustrator', '30animo.jpg', 1, '鋼筆練習', '3', 10, '');
 
 -- --------------------------------------------------------
 
@@ -561,7 +611,7 @@ CREATE TABLE `total` (
 --
 
 INSERT INTO `total` (`id`, `total`) VALUES
-(1, 1030);
+(1, 1032);
 
 --
 -- 已傾印資料表的索引
@@ -652,6 +702,12 @@ ALTER TABLE `re_aut`
   ADD PRIMARY KEY (`id`);
 
 --
+-- 資料表索引 `re_connection`
+--
+ALTER TABLE `re_connection`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- 資料表索引 `re_education`
 --
 ALTER TABLE `re_education`
@@ -661,6 +717,12 @@ ALTER TABLE `re_education`
 -- 資料表索引 `re_experience`
 --
 ALTER TABLE `re_experience`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- 資料表索引 `re_headshot`
+--
+ALTER TABLE `re_headshot`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -782,10 +844,16 @@ ALTER TABLE `re_aut`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
+-- 使用資料表自動遞增(AUTO_INCREMENT) `re_connection`
+--
+ALTER TABLE `re_connection`
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
 -- 使用資料表自動遞增(AUTO_INCREMENT) `re_education`
 --
 ALTER TABLE `re_education`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `re_experience`
@@ -794,16 +862,22 @@ ALTER TABLE `re_experience`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
+-- 使用資料表自動遞增(AUTO_INCREMENT) `re_headshot`
+--
+ALTER TABLE `re_headshot`
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- 使用資料表自動遞增(AUTO_INCREMENT) `re_menu`
 --
 ALTER TABLE `re_menu`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `re_port`
 --
 ALTER TABLE `re_port`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `re_skill`
