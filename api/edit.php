@@ -31,6 +31,7 @@ foreach ($_POST['id'] as $key => $id) {
                 break;
             case "re_education":
             case "re_experience":
+            case "re_job":
                 $row['text2'] = $_POST['text2'][$key];
                 $row['sh'] = in_array($id, $_POST['sh']) ? 1 : 0;
                 break;

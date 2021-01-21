@@ -27,6 +27,7 @@ switch ($table) {
         break;
     case "re_education":
         case "re_experience":
+        case "re_job":
         $data['rank'] = $Education->q("select max(rank) from re_education ")[0][0] + 1;;
         $data['text2'] = $_POST['text2'];
         $data['sh'] = 1;

@@ -258,7 +258,7 @@
 
           ?>
 
-            <div class="col-lg-12 col-md-6 box wow bounceInUp" data-wow-duration="1.4s">
+            <div class="col-lg-6 col-md-6 box wow bounceInUp" data-wow-duration="1.4s">
               <h4 class="title"><a><?= $main['text']; ?></a></h4>
               <p class="description"><?= $main['text2']; ?></p>
             </div>
@@ -281,7 +281,7 @@
 
           ?>
 
-            <div class="col-lg-12 col-md-6 box wow bounceInUp" data-wow-duration="1.4s">
+            <div class="col-lg-6 col-md-6 box wow bounceInUp" data-wow-duration="1.4s">
               <h4 class="title"><a><?= $main['text']; ?></a></h4>
               <p class="description"><?= $main['text2']; ?></p>
             </div>
@@ -306,7 +306,7 @@
 
           ?>
 
-            <div class="col-lg-12 col-md-6 box wow bounceInUp" data-wow-duration="1.4s">
+            <div class="col-lg-6 col-md-6 box wow bounceInUp" data-wow-duration="1.4s">
               <h4 class="title"><a><?= $main['text']; ?></a></h4>
               <p class="description"><?= $main['text2']; ?></p>
             </div>

@@ -23,10 +23,10 @@ if(isset($_GET['err'])){
   <link href="../assets/demo/demo.css" rel="stylesheet" />
 </head>
 
-<body class="">
+<body style="overflow:hidden;" class="">
   <!--正中央-->
   <form method="post" action="../api/login.php">
-	<div class="section section-signup page-header" style="background-image: url('../front/img/sky.jpg');">
+	<div class="section section-signup page-header" style=" background-size: cover; background-image: url('../front/img/sky.jpg');">
       <div class="container">
         <div class="row">
           <div class="col-lg-4 col-md-6 mx-auto">
